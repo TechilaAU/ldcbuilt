@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Designs — LDC Built</title>
+<meta name="description" content="Explore 15 fixed-price home designs from LDC Built. Filter by bedrooms, bathrooms, storeys, and size. Brisbane &amp; Gold Coast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+  .designs-hero {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 72px var(--gutter) 48px;
+  }
+  .designs-hero .pill-tag { margin-bottom: 32px; }
+  .designs-hero .page-title { margin-bottom: 32px; max-width: 1000px; }
+  .designs-hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--soft);
+    align-items: end;
+  }
+  .designs-intro { font-size: 17px; line-height: 1.55; color: var(--slate); max-width: 520px; }
+  .designs-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em;
+    color: var(--mid); text-transform: uppercase;
+    text-align: right;
+  }
+  .designs-count .count-num {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 48px; font-weight: 500;
+    color: var(--charcoal);
+    display: block; line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+
+  /* Filters */
+  .filters {
+    background: var(--white);
+    border-top: 1px solid var(--soft);
+    border-bottom: 1px solid var(--soft);
+    padding: 24px 0;
+    position: sticky;
+    top: 68px;
+    z-index: 50;
+    backdrop-filter: blur(20px);
+  }
+  .filters-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+    color: var(--mid); text-transform: uppercase;
+    margin-right: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .filter-label::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red);
+  }
+  .filter-group { display: flex; gap: 4px; background: var(--off-white); padding: 4px; border-radius: var(--radius-pill); border: 1px solid var(--soft); }
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 13px; font-weight: 500;
+    color: var(--slate);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: none;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+  }
+  .filter-btn:hover { background: var(--white); color: var(--charcoal); }
+  .filter-btn.active { background: var(--charcoal); color: var(--white); }
+  .filter-clear {
+    margin-left: auto;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--soft);
+    border-radius: var(--radius-pill);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    cursor: none;
+    transition: all 0.2s ease;
+  }
+  .filter-clear:hover { color: var(--charcoal); border-color: var(--charcoal); }
+
+  /* Grid */
+  .grid-section { max-width: var(--container); margin: 0 auto; padding: 48px var(--gutter) 96px; }
+  .results-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.1em;
+    color: var(--mid); text-transform: uppercase;
+  }
+  .no-results {
+    grid-column: 1 / -1;
+    padding: 80px 40px;
+    text-align: center;
+    border: 1px dashed var(--soft);
+    border-radius: var(--radius-lg);
+  }
+  .no-results-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 28px; font-weight: 500;
+    color: var(--charcoal); margin-bottom: 12px;
+  }
+  .no-results-desc { color: var(--mid); font-size: 15px; max-width: 420px; margin: 0 auto; }
+
+  @media (max-width: 900px) {
+    .designs-hero-bottom { grid-template-columns: 1fr; gap: 24px; }
+    .designs-count { text-align: left; }
+    .filters { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">LDC <span class="logo-sub">Built</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html" class="active">Designs</a></li>
+      <li><a href="../previous-builds/index.html">Built</a></li>
+      <li><a href="../about/index.html">About</a></li>
+      <li><a href="../contact/index.html">Contact</a></li>
+    </ul>
+    <a href="../contact/index.html" class="nav-cta">Get a quote</a>
+    <button class="mobile-toggle">Menu</button>
+  </div>
+</nav>
+<div class="mobile-drawer">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Designs</a>
+  <a href="../previous-builds/index.html">Built</a>
+  <a href="../about/index.html">About</a>
+  <a href="../contact/index.html">Contact</a>
+</div>
+
+<section class="designs-hero">
+  <div class="pill-tag live">
+    15 Designs
+    <span class="divider"></span>
+    Brisbane &amp; Gold Coast
+  </div>
+  <h1 class="page-title">
+    Our <span class="italic">home designs<span class="dot">.</span></span>
+  </h1>
+  <div class="designs-hero-bottom">
+    <p class="designs-intro">
+      A curated range of fifteen fixed-price designs spanning single and double storey, narrow lot through to acreage. Filter by what matters to you, or scroll the full collection.
+    </p>
+    <div class="designs-count">
+      <span class="count-num" id="count-display">15</span>
+      Designs available
+    </div>
+  </div>
+</section>
+
+<section class="filters">
+  <div class="filters-inner">
+    <span class="filter-label">Storeys</span>
+    <div class="filter-group" data-filter="storeys">
+      <button class="filter-btn active" data-value="all">All</button>
+      <button class="filter-btn" data-value="1">Single</button>
+      <button class="filter-btn" data-value="2">Double</button>
+    </div>
+    <span class="filter-label">Beds</span>
+    <div class="filter-group" data-filter="beds">
+      <button class="filter-btn active" data-value="all">All</button>
+      <button class="filter-btn" data-value="3">3</button>
+      <button class="filter-btn" data-value="4">4</button>
+      <button class="filter-btn" data-value="5+">5+</button>
+    </div>
+    <span class="filter-label">Baths</span>
+    <div class="filter-group" data-filter="baths">
+      <button class="filter-btn active" data-value="all">All</button>
+      <button class="filter-btn" data-value="2">2</button>
+      <button class="filter-btn" data-value="2.5+">2.5+</button>
+      <button class="filter-btn" data-value="3+">3+</button>
+    </div>
+    <span class="filter-label">Size</span>
+    <div class="filter-group" data-filter="size">
+      <button class="filter-btn active" data-value="all">All</button>
+      <button class="filter-btn" data-value="small">&lt;200m²</button>
+      <button class="filter-btn" data-value="medium">200–250m²</button>
+      <button class="filter-btn" data-value="large">250m²+</button>
+    </div>
+    <button class="filter-clear" id="clear-filters">Clear</button>
+  </div>
+</section>
+
+<section class="grid-section">
+  <div class="results-meta">
+    <span id="results-text">Showing all 15 designs</span>
+    <span>Sorted by code ↓</span>
+  </div>
+  <div class="design-grid" id="designs-grid"></div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-grid-bg"></div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo">LDC <span class="logo-sub">Built</span></a>
+        <p class="footer-tagline">
+          Residential homes, engineered for <span class="italic">everyday<span class="dot">.</span></span>
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home designs</a></li>
+          <li><a href="../previous-builds/index.html">Completed builds</a></li>
+          <li><a href="../about/index.html">About LDC</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Regions</div>
+        <ul class="footer-links">
+          <li><a href="#">Brisbane</a></li>
+          <li><a href="#">Gold Coast</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:1300000000">1300 000 000</a></li>
+          <li><a href="mailto:hello@ldcbuilt.com.au">hello@ldcbuilt.com.au</a></li>
+          <li>Brisbane · Gold Coast</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LDC Built · QBCC Licence No. 000000</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/designs-data.js"></script>
+<script src="../assets/js/site.js"></script>
+<script>
+  const state = { storeys: 'all', beds: 'all', baths: 'all', size: 'all' };
+  const grid = document.getElementById('designs-grid');
+  const countDisplay = document.getElementById('count-display');
+  const resultsText = document.getElementById('results-text');
+
+  function cardHTML(d) {
+    return `
+      <a href="${d.slug}.html" class="design-card">
+        <div class="card-img" style="background: linear-gradient(${d.gradient});">
+          <span class="card-code">${d.code}</span>
+          <span class="card-price">From $${(d.priceFrom/1000).toFixed(0)}k</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-name">${d.name}</h3>
+          <p class="card-tagline">${d.tagline}</p>
+          <div class="card-specs">
+            <span class="spec"><strong>${d.beds}</strong> Bed</span>
+            <span class="spec"><strong>${d.baths}</strong> Bath</span>
+            <span class="spec"><strong>${d.m2}</strong> m²</span>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+    `;
+  }
+
+  function filter(d) {
+    if (state.storeys !== 'all' && d.storeys != state.storeys) return false;
+    if (state.beds !== 'all') {
+      if (state.beds === '5+' && d.beds < 5) return false;
+      if (state.beds !== '5+' && d.beds != state.beds) return false;
+    }
+    if (state.baths !== 'all') {
+      if (state.baths === '2' && d.baths !== 2) return false;
+      if (state.baths === '2.5+' && d.baths < 2.5) return false;
+      if (state.baths === '3+' && d.baths < 3) return false;
+    }
+    if (state.size !== 'all') {
+      if (state.size === 'small' && d.m2 >= 200) return false;
+      if (state.size === 'medium' && (d.m2 < 200 || d.m2 > 250)) return false;
+      if (state.size === 'large' && d.m2 <= 250) return false;
+    }
+    return true;
+  }
+
+  function render() {
+    const matches = LDC_DESIGNS.filter(filter);
+    countDisplay.textContent = matches.length;
+    resultsText.textContent = matches.length === LDC_DESIGNS.length
+      ? `Showing all ${matches.length} designs`
+      : `Showing ${matches.length} of ${LDC_DESIGNS.length} designs`;
+    grid.innerHTML = matches.length
+      ? matches.map(cardHTML).join('')
+      : `<div class="no-results">
+          <h3 class="no-results-title">No designs match those filters</h3>
+          <p class="no-results-desc">Try loosening a filter or clearing all to see the full collection. Custom variations are also available.</p>
+        </div>`;
+    if (window.bindCursor) window.bindCursor();
+  }
+
+  document.querySelectorAll('.filter-group').forEach(group => {
+    const key = group.dataset.filter;
+    group.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state[key] = btn.dataset.value;
+        render();
+      });
+    });
+  });
+
+  document.getElementById('clear-filters').addEventListener('click', () => {
+    Object.keys(state).forEach(k => state[k] = 'all');
+    document.querySelectorAll('.filter-group').forEach(g => {
+      g.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      g.querySelector('[data-value="all"]').classList.add('active');
+    });
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

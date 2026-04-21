@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — LDC Built</title>
+<meta name="description" content="About LDC Built — a Brisbane and Gold Coast residential builder focused on considered homes and transparent contracts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+  .about-hero { max-width: var(--container); margin: 0 auto; padding: 72px var(--gutter) 48px; }
+  .about-hero .pill-tag { margin-bottom: 32px; }
+  .about-hero .page-title { margin-bottom: 48px; max-width: 1100px; }
+  .about-intro-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--soft);
+  }
+  .about-intro-lead {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 28px; font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+    line-height: 1.3;
+  }
+  .about-intro-body { font-size: 16px; line-height: 1.65; color: var(--slate); }
+  .about-intro-body p { margin-bottom: 16px; }
+
+  /* Values */
+  .values { max-width: var(--container); margin: 0 auto; padding: 96px var(--gutter); }
+  .values-head { margin-bottom: 48px; }
+  .values-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: var(--soft);
+    border-radius: var(--radius-lg); overflow: hidden;
+  }
+  .value {
+    background: var(--white);
+    padding: 40px 32px;
+    transition: background 0.3s ease;
+  }
+  .value:hover { background: var(--off-white); }
+  .value-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em;
+    color: var(--mid); text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .value-num::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red);
+  }
+  .value-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 28px; font-weight: 500;
+    letter-spacing: -0.025em;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .value-desc { font-size: 14px; color: var(--mid); line-height: 1.6; }
+
+  /* Credentials band */
+  .credentials { background: var(--charcoal); color: var(--white); padding: 96px 0; position: relative; overflow: hidden; }
+  .credentials-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .credentials-inner { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); position: relative; z-index: 2; }
+  .credentials-head { margin-bottom: 64px; }
+  .credentials-head .section-kicker { color: rgba(255,255,255,0.5); }
+  .credentials-head .section-title { color: var(--white); }
+  .credentials-head .section-title .italic { color: rgba(255,255,255,0.6); }
+  .cred-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .cred {
+    padding: 32px 24px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .cred:last-child { border-right: none; }
+  .cred-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.5); text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cred-label::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red);
+  }
+  .cred-value {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 40px; font-weight: 500;
+    color: var(--white);
+    letter-spacing: -0.03em; line-height: 1;
+  }
+  .cred-value small { font-size: 16px; color: rgba(255,255,255,0.5); font-weight: 400; }
+
+  /* Team preview */
+  .team { max-width: var(--container); margin: 0 auto; padding: 96px var(--gutter); }
+  .team-head { margin-bottom: 48px; }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .team-member {
+    background: var(--white);
+    border: 1px solid var(--soft);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .team-member:hover { border-color: var(--mid); transform: translateY(-4px); }
+  .team-avatar {
+    aspect-ratio: 1/1;
+    background: linear-gradient(135deg, var(--slate) 0%, var(--charcoal) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .team-avatar::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .team-body { padding: 24px; }
+  .team-name {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 22px; font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .team-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+    color: var(--mid); text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .team-role::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red);
+  }
+  .team-bio { font-size: 14px; color: var(--slate); line-height: 1.55; }
+
+  /* CTA */
+  .cta-band { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter) 96px; }
+  .cta-inner {
+    background: var(--charcoal);
+    color: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 80px 64px;
+    display: grid; grid-template-columns: 1.5fr 1fr;
+    gap: 48px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-inner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+  .cta-content { position: relative; z-index: 2; }
+  .cta-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .cta-kicker::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red);
+  }
+  .cta-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 500; letter-spacing: -0.03em;
+    line-height: 1.05; color: var(--white);
+  }
+  .cta-title .italic { font-style: italic; color: rgba(255,255,255,0.7); font-weight: 400; }
+  .cta-title .dot { color: var(--red); font-style: normal; }
+  .cta-actions { display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 2; }
+  .cta-actions .btn-primary {
+    background: var(--white); color: var(--charcoal); border-color: var(--white);
+    justify-content: center; width: 100%;
+  }
+  .cta-actions .btn-primary:hover { background: var(--red); color: var(--white); border-color: var(--red); }
+  .cta-actions .btn-ghost {
+    background: transparent; color: var(--white);
+    border-color: rgba(255,255,255,0.2);
+    justify-content: center; width: 100%;
+  }
+  .cta-actions .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+
+  @media (max-width: 900px) {
+    .about-intro-grid { grid-template-columns: 1fr; gap: 40px; }
+    .values-grid { grid-template-columns: 1fr; }
+    .cred-grid { grid-template-columns: repeat(2, 1fr); }
+    .cred:nth-child(2) { border-right: none; }
+    .cred:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .team-grid { grid-template-columns: 1fr; }
+    .cta-inner { grid-template-columns: 1fr; padding: 48px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">LDC <span class="logo-sub">Built</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../home-designs/index.html">Designs</a></li>
+      <li><a href="../previous-builds/index.html">Built</a></li>
+      <li><a href="index.html" class="active">About</a></li>
+      <li><a href="../contact/index.html">Contact</a></li>
+    </ul>
+    <a href="../contact/index.html" class="nav-cta">Get a quote</a>
+    <button class="mobile-toggle">Menu</button>
+  </div>
+</nav>
+<div class="mobile-drawer">
+  <a href="../index.html">Home</a>
+  <a href="../home-designs/index.html">Designs</a>
+  <a href="../previous-builds/index.html">Built</a>
+  <a href="index.html">About</a>
+  <a href="../contact/index.html">Contact</a>
+</div>
+
+<section class="about-hero">
+  <div class="pill-tag live">
+    About
+    <span class="divider"></span>
+    Est. South East QLD
+  </div>
+  <h1 class="page-title">
+    Homes, built with <span class="italic">intent<span class="dot">.</span></span>
+  </h1>
+  <div class="about-intro-grid">
+    <p class="about-intro-lead">
+      LDC Built is a Brisbane and Gold Coast residential builder focused on the homes in between — not so mass-market you feel like a number, not so custom you can't afford it.
+    </p>
+    <div class="about-intro-body">
+      <p>We started LDC because too many South East Queensland families were choosing between two bad options: volume builders where the experience ends the day the contract is signed, or custom builders where the price doubles before you're out of the ground.</p>
+      <p>Our approach is simple. Fifteen carefully considered designs, fixed pricing you can trust, a single point of contact from enquiry through handover, and trades we work with on every project — not whoever was available.</p>
+      <p>We work across Brisbane and the Gold Coast exclusively, which means our site supervisors are never more than a short drive from your build.</p>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="section-head values-head">
+    <div>
+      <div class="section-kicker"><span class="num">01</span> How we work</div>
+      <h2 class="section-title">Three <span class="italic">principles<span class="dot">.</span></span></h2>
+    </div>
+  </div>
+  <div class="values-grid">
+    <div class="value">
+      <div class="value-num">Value 01</div>
+      <h3 class="value-title">Fixed price means fixed.</h3>
+      <p class="value-desc">Our contracts are genuinely fixed. Site costs, inclusions, allowances — all locked in before you sign. No "provisional sums" that blow out the budget twelve weeks in.</p>
+    </div>
+    <div class="value">
+      <div class="value-num">Value 02</div>
+      <h3 class="value-title">One point of contact.</h3>
+      <p class="value-desc">From first enquiry through to handover, you speak to the same person. No being passed around sales, drafting, contracts, and construction as the build progresses.</p>
+    </div>
+    <div class="value">
+      <div class="value-num">Value 03</div>
+      <h3 class="value-title">Trades we actually know.</h3>
+      <p class="value-desc">We work with the same core trades on every build. That consistency shows up in the finish, the timelines, and the way things get resolved when issues come up.</p>
+    </div>
+  </div>
+</section>
+
+<section class="credentials">
+  <div class="credentials-bg"></div>
+  <div class="credentials-inner">
+    <div class="credentials-head">
+      <div class="section-kicker"><span class="num" style="color: rgba(255,255,255,0.8)">02</span> By the numbers</div>
+      <h2 class="section-title">A track record, <span class="italic">not a pitch<span class="dot">.</span></span></h2>
+    </div>
+    <div class="cred-grid">
+      <div class="cred">
+        <div class="cred-label">Homes delivered</div>
+        <div class="cred-value">127<small>+</small></div>
+      </div>
+      <div class="cred">
+        <div class="cred-label">Years in SEQ</div>
+        <div class="cred-value">12</div>
+      </div>
+      <div class="cred">
+        <div class="cred-label">Average build</div>
+        <div class="cred-value">18<small>wks</small></div>
+      </div>
+      <div class="cred">
+        <div class="cred-label">Repeat clients</div>
+        <div class="cred-value">42<small>%</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="section-head team-head">
+    <div>
+      <div class="section-kicker"><span class="num">03</span> The team</div>
+      <h2 class="section-title">People on your <span class="italic">build<span class="dot">.</span></span></h2>
+    </div>
+  </div>
+  <div class="team-grid">
+    <div class="team-member">
+      <div class="team-avatar" style="background: linear-gradient(135deg, #3E4B57 0%, #1A1F24 100%);"></div>
+      <div class="team-body">
+        <h3 class="team-name">[Director Name]</h3>
+        <div class="team-role">Founder &amp; Director</div>
+        <p class="team-bio">Licensed builder with 18+ years in SEQ residential construction. Oversees every contract from first site visit through handover.</p>
+      </div>
+    </div>
+    <div class="team-member">
+      <div class="team-avatar" style="background: linear-gradient(135deg, #6B7480 0%, #3E4B57 100%);"></div>
+      <div class="team-body">
+        <h3 class="team-name">[Construction Manager]</h3>
+        <div class="team-role">Construction Manager</div>
+        <p class="team-bio">Manages the build program across all active sites, coordinates trades, and ensures every home hits program and standard.</p>
+      </div>
+    </div>
+    <div class="team-member">
+      <div class="team-avatar" style="background: linear-gradient(135deg, #1f2429 0%, #3E4B57 100%);"></div>
+      <div class="team-body">
+        <h3 class="team-name">[Client Lead]</h3>
+        <div class="team-role">Client Relations</div>
+        <p class="team-bio">Your single point of contact from enquiry onwards. Handles selections, variations, and weekly updates throughout the build.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-inner">
+    <div class="cta-content">
+      <div class="cta-kicker">Ready to start?</div>
+      <h2 class="cta-title">Let's talk about <span class="italic">your build<span class="dot">.</span></span></h2>
+    </div>
+    <div class="cta-actions">
+      <a href="../contact/index.html" class="btn-primary">Get a quote</a>
+      <a href="../home-designs/index.html" class="btn-ghost">Browse designs</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-grid-bg"></div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo">LDC <span class="logo-sub">Built</span></a>
+        <p class="footer-tagline">
+          Residential homes, engineered for <span class="italic">everyday<span class="dot">.</span></span>
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="../home-designs/index.html">Home designs</a></li>
+          <li><a href="../previous-builds/index.html">Completed builds</a></li>
+          <li><a href="index.html">About LDC</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Regions</div>
+        <ul class="footer-links">
+          <li><a href="#">Brisbane</a></li>
+          <li><a href="#">Gold Coast</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:1300000000">1300 000 000</a></li>
+          <li><a href="mailto:hello@ldcbuilt.com.au">hello@ldcbuilt.com.au</a></li>
+          <li>Brisbane · Gold Coast</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LDC Built · QBCC Licence No. 000000</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

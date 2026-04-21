@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Burleigh — LDC Built</title>
+<meta name="description" content="The Burleigh — Coastal-oriented open plan. 4 bed, 2 bath, 232m². From $612k. LDC Built, Brisbane &amp; Gold Coast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+  .design-hero { max-width: var(--container); margin: 0 auto; padding: 48px var(--gutter) 24px; }
+  .design-hero-meta { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; margin-bottom: 32px; flex-wrap: wrap; }
+  .design-hero-title { margin-bottom: 24px; max-width: 1100px; }
+  .design-hero-tagline { font-size: 20px; color: var(--slate); max-width: 640px; line-height: 1.45; margin-bottom: 48px; }
+
+  /* Showcase image */
+  .showcase {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 48px;
+  }
+  .showcase-inner {
+    aspect-ratio: 16/9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #1A1F24 0%, #3E4B57 100%);
+  }
+  .showcase-inner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .showcase-code {
+    position: absolute; top: 32px; left: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+    background: rgba(26, 31, 36, 0.4);
+    backdrop-filter: blur(8px);
+    padding: 10px 16px;
+    border-radius: var(--radius-pill);
+    display: inline-flex; align-items: center; gap: 8px;
+    z-index: 2;
+  }
+  .showcase-code::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red);
+  }
+  .showcase-label {
+    position: absolute; bottom: 32px; left: 32px;
+    color: var(--white);
+    z-index: 2;
+  }
+  .showcase-label-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .showcase-label-main {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 24px; font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  /* Specs grid */
+  .specs-strip {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 96px;
+  }
+  .specs-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+    border-top: 1px solid var(--soft);
+    border-bottom: 1px solid var(--soft);
+  }
+  .spec-item { padding: 32px 20px; border-right: 1px solid var(--soft); }
+  .spec-item:last-child { border-right: none; }
+  .spec-item-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: var(--mid); text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .spec-item-label::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red);
+  }
+  .spec-item-value {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 32px; font-weight: 500;
+    color: var(--charcoal);
+    letter-spacing: -0.025em;
+    line-height: 1;
+    display: flex; align-items: baseline; gap: 4px;
+  }
+  .spec-item-value small { font-size: 14px; color: var(--mid); font-weight: 400; }
+
+  /* Detail columns */
+  .detail-section {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 96px;
+  }
+  .detail-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    padding-top: 64px;
+    border-top: 1px solid var(--soft);
+  }
+  .detail-left .section-kicker { margin-bottom: 24px; }
+  .detail-summary {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 28px; font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+    line-height: 1.25;
+    margin-bottom: 32px;
+  }
+  .detail-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .detail-body p {
+    font-size: 16px; line-height: 1.6;
+    color: var(--slate);
+    margin-bottom: 20px;
+  }
+  .inclusion-list { list-style: none; }
+  .inclusion-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--soft);
+    font-size: 14px;
+    color: var(--slate);
+    display: flex; gap: 16px;
+  }
+  .inclusion-list li::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  /* Facades */
+  .facades { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter) 96px; }
+  .facades-head { margin-bottom: 48px; }
+  .facades-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .facade-card {
+    aspect-ratio: 4/3;
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--soft);
+  }
+  .facade-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(26, 31, 36, 0.1); }
+  .facade-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .facade-label {
+    position: absolute; bottom: 20px; left: 20px;
+    color: var(--white); z-index: 2;
+  }
+  .facade-label-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.6); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .facade-label-main {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 20px; font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  /* Related */
+  .related { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter) 96px; }
+
+  /* Enquiry form */
+  .enquire {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 96px;
+  }
+  .enquire-inner {
+    background: var(--charcoal);
+    color: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 64px;
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px;
+    position: relative; overflow: hidden;
+  }
+  .enquire-inner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+  .enquire-content { position: relative; z-index: 2; }
+  .enquire-content .section-kicker { color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+  .enquire-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 48px; font-weight: 500;
+    color: var(--white); letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .enquire-title .italic { font-style: italic; color: rgba(255,255,255,0.6); font-weight: 400; }
+  .enquire-title .dot { color: var(--red); font-style: normal; }
+  .enquire-intro { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+  .enquire-form { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-field label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    outline: none;
+    border-color: var(--red);
+    background: rgba(255,255,255,0.06);
+  }
+  .form-field textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    padding: 16px 28px;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-pill);
+    font-size: 14px; font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: none;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    display: inline-flex; align-items: center; gap: 10px; justify-content: center;
+  }
+  .form-submit:hover { background: var(--red-hover); transform: translateY(-2px); }
+
+  @media (max-width: 900px) {
+    .specs-grid { grid-template-columns: repeat(3, 1fr); }
+    .spec-item:nth-child(3) { border-right: none; }
+    .spec-item:nth-child(-n+3) { border-bottom: 1px solid var(--soft); }
+    .detail-grid { grid-template-columns: 1fr; gap: 48px; }
+    .facades-grid { grid-template-columns: 1fr; }
+    .enquire-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+    .enquire-title { font-size: 36px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">LDC <span class="logo-sub">Built</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html" class="active">Designs</a></li>
+      <li><a href="../previous-builds/index.html">Built</a></li>
+      <li><a href="../about/index.html">About</a></li>
+      <li><a href="../contact/index.html">Contact</a></li>
+    </ul>
+    <a href="../contact/index.html" class="nav-cta">Get a quote</a>
+    <button class="mobile-toggle">Menu</button>
+  </div>
+</nav>
+<div class="mobile-drawer">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Designs</a>
+  <a href="../previous-builds/index.html">Built</a>
+  <a href="../about/index.html">About</a>
+  <a href="../contact/index.html">Contact</a>
+</div>
+
+<section class="design-hero container">
+  <div class="breadcrumbs">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Designs</a>
+    <span class="sep">/</span>
+    <span>The Burleigh</span>
+  </div>
+  <div class="design-hero-meta">
+    <div class="pill-tag">
+      <span style="color: var(--red); font-weight: 500;">A03</span>
+      <span class="divider"></span>
+      Coastal
+      <span class="divider"></span>
+      Single Storey
+    </div>
+    <div class="pill-tag">From $612k</div>
+  </div>
+  <h1 class="page-title design-hero-title">
+    The <span class="italic">Burleigh<span class="dot">.</span></span>
+  </h1>
+  <p class="design-hero-tagline">Coastal-oriented open plan</p>
+</section>
+
+<section class="showcase">
+  <div class="showcase-inner">
+    <span class="showcase-code">A03</span>
+    <div class="showcase-label">
+      <div class="showcase-label-sub">Facade — Contemporary</div>
+      <div class="showcase-label-main">The Burleigh · Render placeholder</div>
+    </div>
+  </div>
+</section>
+
+<section class="specs-strip">
+  <div class="specs-grid">
+    <div class="spec-item">
+      <div class="spec-item-label">Bedrooms</div>
+      <div class="spec-item-value">4</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-item-label">Bathrooms</div>
+      <div class="spec-item-value">2</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-item-label">Garage</div>
+      <div class="spec-item-value">2</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-item-label">Living</div>
+      <div class="spec-item-value">232<small>m²</small></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-item-label">Lot width</div>
+      <div class="spec-item-value">15<small>m</small></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-item-label">Storeys</div>
+      <div class="spec-item-value">Single</div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="section-kicker"><span class="num">01</span> Overview</div>
+      <p class="detail-summary">Oriented to capture coastal breezes, with a 4.2m ceiling in the main living space and sliders that open the rear entirely to the alfresco. Designed for Gold Coast blocks.</p>
+      <div class="detail-actions">
+        <a href="#enquire" class="btn-primary">Enquire on The Burleigh</a>
+        <a href="#" class="btn-secondary btn-arrow">
+          Download brochure
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v14M5 10l7 7 7-7M3 21h18"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="detail-body">
+      <div class="section-kicker"><span class="num">02</span> Standard inclusions</div>
+      <ul class="inclusion-list">
+        <li>Colorbond roofing with insulation batts to ceiling and external walls</li>
+        <li>Engineered stone benchtops to kitchen and ensuites</li>
+        <li>20mm reconstituted stone to laundry with upgraded cabinetry</li>
+        <li>2.7m ceilings to ground floor, 2.55m to upper levels</li>
+        <li>Ducted reverse-cycle air conditioning throughout</li>
+        <li>Premium European appliances — 900mm gas cooktop, oven, rangehood, dishwasher</li>
+        <li>LED downlights throughout, Clipsal switches in matte finish</li>
+        <li>Tiled wet areas with full-height tiling to ensuites and main bathroom</li>
+        <li>Tilt-a-door panel lift garage with remote control unit</li>
+        <li>Landscaping package — turf, driveway, fencing, clothesline, letterbox</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="facades">
+  <div class="section-head facades-head">
+    <div>
+      <div class="section-kicker"><span class="num">03</span> Facade options</div>
+      <h2 class="section-title">Three <span class="italic">looks<span class="dot">.</span></span></h2>
+    </div>
+  </div>
+  <div class="facades-grid">
+    <div class="facade-card" style="background: linear-gradient(135deg, #1A1F24 0%, #3E4B57 100%);">
+      <div class="facade-label">
+        <div class="facade-label-sub">Facade 01</div>
+        <div class="facade-label-main">Contemporary</div>
+      </div>
+    </div>
+    <div class="facade-card" style="background: linear-gradient(135deg, #6B7480 0%, #3E4B57 100%);">
+      <div class="facade-label">
+        <div class="facade-label-sub">Facade 02</div>
+        <div class="facade-label-main">Classic</div>
+      </div>
+    </div>
+    <div class="facade-card" style="background: linear-gradient(135deg, #1f2429 0%, #3E4B57 100%);">
+      <div class="facade-label">
+        <div class="facade-label-sub">Facade 03</div>
+        <div class="facade-label-main">Architectural</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enquire" id="enquire">
+  <div class="enquire-inner">
+    <div class="enquire-content">
+      <div class="section-kicker"><span class="num">04</span> Enquire</div>
+      <h2 class="enquire-title">Enquire on <span class="italic">The Burleigh<span class="dot">.</span></span></h2>
+      <p class="enquire-intro">Tell us a little about your block and your brief. We'll come back within one business day with a personalised quote and any relevant inclusions for your region.</p>
+    </div>
+    <form class="enquire-form">
+      <div class="form-row">
+        <div class="form-field">
+          <label>First name</label>
+          <input type="text" name="firstname" required>
+        </div>
+        <div class="form-field">
+          <label>Last name</label>
+          <input type="text" name="lastname" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="form-field">
+          <label>Phone</label>
+          <input type="tel" name="phone" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Region</label>
+          <select name="region">
+            <option>Brisbane</option>
+            <option>Gold Coast</option>
+            <option>Other / undecided</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Have you got a block?</label>
+          <select name="block">
+            <option>Yes — have a block</option>
+            <option>Looking for house &amp; land</option>
+            <option>Still exploring</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Tell us about your project</label>
+        <textarea name="message" placeholder="Block location, lot size, timing, any specific requirements..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send enquiry
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<section class="related">
+  <div class="section-head">
+    <div>
+      <div class="section-kicker"><span class="num">05</span> Also consider</div>
+      <h2 class="section-title">Related <span class="italic">designs<span class="dot">.</span></span></h2>
+    </div>
+    <a href="index.html" class="btn-ghost btn-sm btn-arrow">
+      View all 15
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="design-grid" id="related-grid"></div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-grid-bg"></div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo">LDC <span class="logo-sub">Built</span></a>
+        <p class="footer-tagline">
+          Residential homes, engineered for <span class="italic">everyday<span class="dot">.</span></span>
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home designs</a></li>
+          <li><a href="../previous-builds/index.html">Completed builds</a></li>
+          <li><a href="../about/index.html">About LDC</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Regions</div>
+        <ul class="footer-links">
+          <li><a href="#">Brisbane</a></li>
+          <li><a href="#">Gold Coast</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:1300000000">1300 000 000</a></li>
+          <li><a href="mailto:hello@ldcbuilt.com.au">hello@ldcbuilt.com.au</a></li>
+          <li>Brisbane · Gold Coast</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LDC Built · QBCC Licence No. 000000</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/designs-data.js"></script>
+<script src="../assets/js/site.js"></script>
+<script>
+  // Pick 3 related (different storeys mix)
+  const current = "the-burleigh";
+  const related = LDC_DESIGNS.filter(d => d.slug !== current).slice(0, 3);
+  const grid = document.getElementById('related-grid');
+  grid.innerHTML = related.map(d => `
+    <a href="${d.slug}.html" class="design-card">
+      <div class="card-img" style="background: linear-gradient(${d.gradient});">
+        <span class="card-code">${d.code}</span>
+        <span class="card-price">From $${(d.priceFrom/1000).toFixed(0)}k</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-name">${d.name}</h3>
+        <p class="card-tagline">${d.tagline}</p>
+        <div class="card-specs">
+          <span class="spec"><strong>${d.beds}</strong> Bed</span>
+          <span class="spec"><strong>${d.baths}</strong> Bath</span>
+          <span class="spec"><strong>${d.m2}</strong> m²</span>
+        </div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+  `).join('');
+  if (window.bindCursor) window.bindCursor();
+</script>
+</body>
+</html>
