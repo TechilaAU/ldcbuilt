@@ -13,34 +13,114 @@
   /* ============ HOMEPAGE ============ */
   .hero {
     position: relative;
+    width: 100%;
+    min-height: 88vh;
+    overflow: hidden;
+    background: var(--charcoal);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+  }
+  /* Video layer */
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+  /* Dark gradient overlay for text legibility */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(26,31,36,0.55) 0%, rgba(26,31,36,0.35) 40%, rgba(26,31,36,0.85) 100%),
+      linear-gradient(90deg, rgba(26,31,36,0.45) 0%, rgba(26,31,36,0.15) 60%, rgba(26,31,36,0) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  /* Subtle grid texture on top */
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 3;
+    width: 100%;
     max-width: var(--container);
     margin: 0 auto;
     padding: 72px var(--gutter) 48px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-  .hero-tag { margin-bottom: 32px; }
+  /* Override pill-tag for dark hero */
+  .hero .pill-tag {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .hero .pill-tag .divider { background: rgba(255,255,255,0.2); }
+  .hero-tag { margin-bottom: 32px; align-self: flex-start; }
   .hero-title {
     font-family: 'Instrument Sans', sans-serif;
     font-weight: 500;
     font-size: clamp(56px, 9vw, 128px);
     line-height: 0.95;
     letter-spacing: -0.045em;
-    color: var(--charcoal);
+    color: var(--white);
     margin-bottom: 40px;
     max-width: 1100px;
   }
-  .hero-title .italic { font-style: italic; font-weight: 400; color: var(--slate); }
+  .hero-title .italic { font-style: italic; font-weight: 400; color: rgba(255,255,255,0.7); }
   .hero-title .dot { color: var(--red); font-style: normal; }
   .hero-grid {
     display: grid; grid-template-columns: 1.2fr 1fr;
     gap: 80px; align-items: end;
     padding-top: 40px;
-    border-top: 1px solid var(--soft);
+    border-top: 1px solid rgba(255,255,255,0.12);
   }
   .hero-intro {
     font-size: 18px; line-height: 1.55;
-    color: var(--slate); max-width: 520px;
+    color: rgba(255,255,255,0.8); max-width: 520px;
   }
   .hero-ctas { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+  /* Button overrides for dark hero */
+  .hero .btn-primary {
+    background: var(--white);
+    color: var(--charcoal);
+    border-color: var(--white);
+  }
+  .hero .btn-primary:hover {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+  }
+  .hero .btn-secondary {
+    color: var(--white);
+    border-color: rgba(255,255,255,0.2);
+  }
+  .hero .btn-secondary:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.05);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video { display: none; }
+    .hero { background: linear-gradient(135deg, #2a333c 0%, #1A1F24 100%); }
+  }
 
   /* Stats */
   .stats-bar {
@@ -284,10 +364,65 @@
   }
   .cta-actions .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
 
+  /* Nav treatment when over dark hero */
+  body.has-hero-video nav.site-nav {
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+  body.has-hero-video nav.site-nav .logo,
+  body.has-hero-video nav.site-nav .logo-sub { color: var(--white); }
+  body.has-hero-video nav.site-nav .nav-links {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  body.has-hero-video nav.site-nav .nav-links a { color: rgba(255,255,255,0.85); }
+  body.has-hero-video nav.site-nav .nav-links a:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+  body.has-hero-video nav.site-nav .nav-links a.active { background: var(--white); color: var(--charcoal); }
+  body.has-hero-video nav.site-nav .nav-cta {
+    background: var(--white);
+    color: var(--charcoal);
+    border-color: var(--white);
+  }
+  body.has-hero-video nav.site-nav .nav-cta:hover {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+  }
+  body.has-hero-video nav.site-nav .mobile-toggle {
+    color: var(--white);
+    border-color: rgba(255,255,255,0.2);
+  }
+  /* After scrolling past hero, nav returns to default light treatment */
+  body.has-hero-video.scrolled nav.site-nav {
+    background: rgba(247, 247, 248, 0.85);
+    border-bottom-color: var(--soft);
+  }
+  body.has-hero-video.scrolled nav.site-nav .logo,
+  body.has-hero-video.scrolled nav.site-nav .logo-sub { color: var(--slate); }
+  body.has-hero-video.scrolled nav.site-nav .nav-links {
+    background: var(--white);
+    border-color: var(--soft);
+  }
+  body.has-hero-video.scrolled nav.site-nav .nav-links a { color: var(--slate); }
+  body.has-hero-video.scrolled nav.site-nav .nav-links a.active { background: var(--charcoal); color: var(--white); }
+  body.has-hero-video.scrolled nav.site-nav .nav-cta {
+    background: var(--charcoal);
+    color: var(--white);
+    border-color: var(--charcoal);
+  }
+  body.has-hero-video.scrolled nav.site-nav .mobile-toggle {
+    color: var(--charcoal);
+    border-color: var(--soft);
+  }
+
   @media (max-width: 900px) {
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .stat:nth-child(2) { border-right: none; }
     .stat:nth-child(-n+2) { border-bottom: 1px solid var(--soft); }
+    .hero { min-height: 75vh; }
+    .hero-inner { padding-top: 48px; padding-bottom: 32px; }
     .hero-grid { grid-template-columns: 1fr; gap: 32px; }
     .hero-ctas { justify-content: flex-start; }
     .process-steps { grid-template-columns: 1fr 1fr; }
@@ -297,7 +432,7 @@
   }
 </style>
 </head>
-<body>
+<body class="has-hero-video">
 
 <nav class="site-nav">
   <div class="nav-inner">
@@ -322,25 +457,36 @@
 </div>
 
 <section class="hero">
-  <div class="pill-tag live hero-tag">
-    Now building
-    <span class="divider"></span>
-    Brisbane &amp; Gold Coast
-  </div>
-  <h1 class="hero-title">
-    New homes,<br>
-    engineered for <span class="italic">everyday<span class="dot">.</span></span>
-  </h1>
-  <div class="hero-grid">
-    <p class="hero-intro">
-      LDC Built delivers considered residential homes across Brisbane and the Gold Coast. Fifteen fixed-price designs spanning first-home footprints to architectural family residences — each built to the same standard.
-    </p>
-    <div class="hero-ctas">
-      <a href="previous-builds/index.html" class="btn-secondary btn-arrow">
-        See our work
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-      <a href="home-designs/index.html" class="btn-primary">Explore designs</a>
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/images/hero-poster.jpg">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+    <source src="assets/video/hero.webm" type="video/webm">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid-bg"></div>
+
+  <div class="hero-inner">
+    <div class="pill-tag live hero-tag">
+      Now building
+      <span class="divider"></span>
+      Brisbane &amp; Gold Coast
+    </div>
+    <div>
+      <h1 class="hero-title">
+        New homes,<br>
+        engineered for <span class="italic">everyday<span class="dot">.</span></span>
+      </h1>
+      <div class="hero-grid">
+        <p class="hero-intro">
+          LDC Built delivers considered residential homes across Brisbane and the Gold Coast. Fifteen fixed-price designs spanning first-home footprints to architectural family residences — each built to the same standard.
+        </p>
+        <div class="hero-ctas">
+          <a href="previous-builds/index.html" class="btn-secondary btn-arrow">
+            See our work
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="home-designs/index.html" class="btn-primary">Explore designs</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -567,6 +713,22 @@
     </a>
   `).join('');
   if (window.bindCursor) window.bindCursor();
+
+  // Toggle nav treatment once we've scrolled past the hero
+  (function initHeroNavScroll() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    const trigger = () => {
+      const threshold = hero.offsetHeight - 80; // swap just before hero ends
+      if (window.scrollY > threshold) {
+        document.body.classList.add('scrolled');
+      } else {
+        document.body.classList.remove('scrolled');
+      }
+    };
+    window.addEventListener('scroll', trigger, { passive: true });
+    trigger();
+  })();
 </script>
 </body>
 </html>

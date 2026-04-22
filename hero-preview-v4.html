@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LDC Built — v4 Literal Creation Homes Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Allura&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Creation Homes-style palette — dark navy + soft off-white, no warm tints */
+  --navy: #1B2332;          /* deep blue-navy for headlines + footer */
+  --navy-soft: #2C3545;
+  --off-white: #F4F1EC;     /* their soft beige/off-white background */
+  --off-white-2: #EEE9E0;   /* slightly warmer variant for section alternation */
+  --white: #FFFFFF;
+  --mid: #7A7468;           /* muted warm grey for body copy */
+  --line: #D8D1C4;          /* divider lines */
+  --dark-text: #2A2A2A;
+  --red: #C8232C;           /* tiny accent — used almost nowhere */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--off-white);
+  color: var(--dark-text);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+@media (hover: none) { body { cursor: auto; } }
+
+/* ============ CURSOR (kept, very subtle) ============ */
+.cursor-dot, .cursor-ring {
+  position: fixed; pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+.cursor-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--red);
+}
+.cursor-ring {
+  width: 28px; height: 28px;
+  border: 1px solid var(--navy);
+  border-radius: 50%;
+  opacity: 0.2;
+  transition: width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s ease;
+}
+.cursor-ring.active { width: 50px; height: 50px; opacity: 0.45; }
+@media (hover: none) { .cursor-dot, .cursor-ring { display: none; } }
+
+/* ============ TOP BAR ============ */
+.top-bar {
+  background: var(--navy);
+  color: var(--off-white);
+  padding: 10px 0;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.top-bar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 32px;
+  align-items: center;
+}
+.top-bar a {
+  color: var(--off-white);
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.top-bar a:hover { opacity: 1; }
+
+/* ============ NAV ============ */
+nav.main-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 32px;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+.logo-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  color: var(--mid);
+  display: block;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex; gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  padding: 4px 0;
+}
+.nav-links a:hover { color: var(--red); }
+.nav-links a.active {
+  border-bottom: 1px solid var(--navy);
+}
+
+.nav-contact {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--navy);
+  text-decoration: none;
+}
+.nav-contact:hover { color: var(--red); }
+
+/* ============ HERO — full bleed like Creation Homes ============ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 110px);
+  min-height: 640px;
+  overflow: hidden;
+  /* simulated dark photo — subtle gradient with warmth on right */
+  background:
+    linear-gradient(95deg, rgba(27,35,50,0.6) 0%, rgba(27,35,50,0.25) 55%, rgba(27,35,50,0.4) 100%),
+    linear-gradient(135deg, #1B2332 0%, #3a4558 30%, #6b7088 55%, #a89d85 80%, #c7b99a 100%);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'><defs><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.03 0'/></filter></defs><rect width='300' height='300' filter='url(%23n)'/></svg>");
+  opacity: 0.8;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Big elegant script overlay — exactly like Creation Homes' "Creative By Nature" */
+.hero-script {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Allura', cursive;
+  font-size: clamp(90px, 14vw, 220px);
+  color: var(--white);
+  line-height: 0.9;
+  text-align: center;
+  z-index: 2;
+  letter-spacing: -0.01em;
+  pointer-events: none;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+}
+.hero-script .line-2 {
+  display: block;
+  margin-top: -0.15em;
+}
+
+/* Sub tagline block bottom */
+.hero-tagline {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 2;
+  color: var(--white);
+}
+.hero-tagline-top {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.hero-tagline-top::before,
+.hero-tagline-top::after {
+  content: '';
+  width: 40px; height: 1px;
+  background: rgba(255,255,255,0.4);
+}
+.hero-tagline-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(28px, 3vw, 46px);
+  line-height: 1.2;
+  color: var(--white);
+  max-width: 680px;
+  margin: 0 auto;
+  letter-spacing: 0.01em;
+}
+
+.hero-cta-wrap {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 40px;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.6);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+  font-family: 'Inter', sans-serif;
+  cursor: none;
+}
+.hero-cta:hover {
+  background: var(--white);
+  color: var(--navy);
+}
+
+/* ============ INTRO SECTION ============ */
+.section {
+  padding: 120px 0;
+}
+.section-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.intro-section {
+  text-align: center;
+  padding: 120px 0 80px;
+}
+.intro-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 24px;
+}
+.intro-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(36px, 4.5vw, 64px);
+  line-height: 1.15;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  max-width: 920px;
+  margin: 0 auto 32px;
+}
+.intro-title em {
+  font-style: italic;
+  color: var(--navy-soft);
+}
+.intro-copy {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--mid);
+  max-width: 720px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+.intro-copy p { margin-bottom: 18px; }
+.intro-cta {
+  margin-top: 40px;
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  padding: 16px 36px;
+  background: var(--navy);
+  color: var(--white);
+  border: 1px solid var(--navy);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: none;
+}
+.intro-cta:hover {
+  background: transparent;
+  color: var(--navy);
+}
+
+/* ============ AWARDS STRIP ============ */
+.awards {
+  background: var(--navy);
+  color: var(--white);
+  padding: 80px 0;
+  position: relative;
+}
+.awards-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+}
+.awards-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 16px;
+}
+.awards-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(26px, 2.6vw, 34px);
+  line-height: 1.35;
+  color: var(--white);
+  max-width: 900px;
+  margin: 0 auto 48px;
+  font-style: italic;
+}
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 32px;
+  align-items: center;
+  justify-items: center;
+  margin-top: 32px;
+}
+.award-badge {
+  width: 100%;
+  max-width: 110px;
+  aspect-ratio: 1;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+.award-badge:hover { opacity: 1; }
+.award-badge-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1;
+}
+.award-badge-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-top: 6px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ============ PROJECTS GRID — photo-led like Creation Homes ============ */
+.projects-section {
+  background: var(--off-white);
+  padding: 120px 0;
+}
+.projects-head {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.projects-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+.projects-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(36px, 4.5vw, 56px);
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+.projects-title em {
+  font-style: italic;
+  color: var(--navy-soft);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.project-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  background: var(--white);
+  cursor: none;
+  transition: transform 0.5s var(--ease);
+}
+.project-card:hover {
+  transform: translateY(-2px);
+}
+.project-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #3a4558 0%, #6b7088 60%, #a89d85 100%);
+}
+.project-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(27,35,50,0.3) 100%);
+  transition: background 0.4s ease;
+}
+.project-card:hover .project-image::after {
+  background: linear-gradient(180deg, transparent 40%, rgba(27,35,50,0.5) 100%);
+}
+.project-card-2 .project-image {
+  background: linear-gradient(135deg, #2C3545 0%, #5a6474 40%, #8f8876 80%, #c7b99a 100%);
+}
+.project-card-3 .project-image {
+  background: linear-gradient(135deg, #1B2332 0%, #44516a 50%, #b3a589 100%);
+}
+.project-card-4 .project-image {
+  background: linear-gradient(135deg, #5a6474 0%, #8f8876 60%, #d6c8a9 100%);
+}
+.project-card-5 .project-image {
+  background: linear-gradient(135deg, #2C3545 0%, #3a4558 50%, #7a7468 100%);
+}
+.project-card-6 .project-image {
+  background: linear-gradient(135deg, #3a4558 0%, #7a7468 50%, #c7b99a 100%);
+}
+
+.project-body {
+  padding: 24px 4px 40px;
+  border-bottom: 1px solid var(--line);
+}
+.project-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 30px;
+  color: var(--navy);
+  letter-spacing: -0.005em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.project-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.projects-cta-wrap {
+  text-align: center;
+  margin-top: 72px;
+}
+.projects-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Inter', sans-serif;
+  padding: 16px 40px;
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--navy);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: none;
+}
+.projects-cta:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+.projects-cta::after {
+  content: '→';
+  transition: transform 0.3s ease;
+}
+.projects-cta:hover::after {
+  transform: translateX(4px);
+}
+
+/* ============ PILLAR BLOCK ============ */
+.pillars {
+  background: var(--off-white-2);
+  padding: 120px 0;
+}
+.pillars-head {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.pillar {
+  text-align: center;
+}
+.pillar-icon {
+  width: 56px; height: 56px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--navy);
+  border-radius: 50%;
+  color: var(--navy);
+}
+.pillar-icon svg {
+  width: 22px; height: 22px;
+  stroke-width: 1.2;
+}
+.pillar-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--navy);
+  margin-bottom: 12px;
+  letter-spacing: 0.01em;
+}
+.pillar-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--mid);
+  font-weight: 300;
+}
+
+/* ============ MOBILE ============ */
+@media (max-width: 960px) {
+  .nav-inner, .top-bar-inner { padding: 0 24px; }
+  .nav-links { display: none; }
+  .top-bar { display: none; }
+  .hero-script { font-size: 90px; }
+  .hero-tagline-main { font-size: 22px; padding: 0 24px; }
+  .hero-cta { padding: 14px 24px; }
+  .section-inner { padding: 0 24px; }
+  .intro-section { padding: 72px 0 48px; }
+  .awards-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .section, .projects-section, .pillars { padding: 72px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-ring" id="ring"></div>
+<div class="cursor-dot" id="dot"></div>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <a href="#">Build in QLD</a>
+    <a href="#">Display Locations</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
+
+<nav class="main-nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      LDC
+      <span class="logo-sub">Built</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Designs</a></li>
+      <li><a href="#">House &amp; Land</a></li>
+      <li><a href="#">Completed Builds</a></li>
+      <li><a href="#">Studio</a></li>
+      <li><a href="#">Offers</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <a href="#" class="nav-contact">Enquire</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-script">
+    Built<br>
+    <span class="line-2">With Care.</span>
+  </div>
+  <div class="hero-tagline">
+    <div class="hero-tagline-top">Award-Winning Home Builders</div>
+    <h1 class="hero-tagline-main">
+      Considered new homes across<br>
+      Brisbane and the Gold Coast.
+    </h1>
+  </div>
+  <div class="hero-cta-wrap">
+    <a href="#" class="hero-cta">View our designs</a>
+  </div>
+</section>
+
+<section class="intro-section">
+  <div class="section-inner">
+    <div class="intro-eyebrow">Brisbane &middot; Gold Coast Home Builders</div>
+    <h2 class="intro-title">
+      Exceptional new build homes <em>without compromise.</em>
+    </h2>
+    <div class="intro-copy">
+      <p>Whether your aspirations draw you to the vibrant allure of inner Brisbane, the family-friendly northern corridors, or the luxurious lifestyle of the Gold Coast — modern, spacious living is within your reach.</p>
+      <p>Explore an extensive selection of home designs, visit our completed builds, and discuss financial considerations with a trusted South East Queensland home builder. From fixed-price contracts to house and land packages in Queensland's most sought-after communities, we provide the inspiration and expertise to guide your dream home journey.</p>
+    </div>
+    <a href="#" class="intro-cta">About LDC Built</a>
+  </div>
+</section>
+
+<section class="awards">
+  <div class="awards-inner">
+    <div class="awards-eyebrow">Recognition</div>
+    <h3 class="awards-title">
+      An award-winning home builder recognised by HIA and Master Builders Queensland for exceptional design, construction and craftsmanship.
+    </h3>
+    <div class="awards-grid">
+      <div class="award-badge">
+        <div class="award-badge-year">2025</div>
+        <div class="award-badge-label">HIA<br>Winner</div>
+      </div>
+      <div class="award-badge">
+        <div class="award-badge-year">2024</div>
+        <div class="award-badge-label">Master<br>Builders</div>
+      </div>
+      <div class="award-badge">
+        <div class="award-badge-year">2024</div>
+        <div class="award-badge-label">HIA<br>Finalist</div>
+      </div>
+      <div class="award-badge">
+        <div class="award-badge-year">2023</div>
+        <div class="award-badge-label">HIA<br>Winner</div>
+      </div>
+      <div class="award-badge">
+        <div class="award-badge-year">2023</div>
+        <div class="award-badge-label">Master<br>Builders</div>
+      </div>
+      <div class="award-badge">
+        <div class="award-badge-year">12<small style="font-size:10px">yrs</small></div>
+        <div class="award-badge-label">Est. in<br>SEQ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects-section">
+  <div class="section-inner">
+    <div class="projects-head">
+      <div class="projects-eyebrow">Dream Home Projects</div>
+      <h2 class="projects-title">Our <em>home designs.</em></h2>
+    </div>
+    <div class="projects-grid">
+      <a href="#" class="project-card project-card-1">
+        <div class="project-image"></div>
+        <div class="project-body">
+          <h3 class="project-name">Ashgrove 17</h3>
+          <div class="project-meta">3 Bed &middot; 2 Bath &middot; 176m²</div>
+        </div>
+      </a>
+      <a href="#" class="project-card project-card-2">
+        <div class="project-image"></div>
+        <div class="project-body">
+          <h3 class="project-name">Paddington 28</h3>
+          <div class="project-meta">5 Bed &middot; 3 Bath &middot; 284m²</div>
+        </div>
+      </a>
+      <a href="#" class="project-card project-card-3">
+        <div class="project-image"></div>
+        <div class="project-body">
+          <h3 class="project-name">Burleigh 23</h3>
+          <div class="project-meta">4 Bed &middot; 2 Bath &middot; 232m²</div>
+        </div>
+      </a>
+      <a href="#" class="project-card project-card-4">
+        <div class="project-image"></div>
+        <div class="project-body">
+          <h3 class="project-name">Redland 16</h3>
+          <div class="project-meta">3 Bed &middot; 2 Bath &middot; 162m²</div>
+        </div>
+      </a>
+      <a href="#" class="project-card project-card-5">
+        <div class="project-image"></div>
+        <div class="project-body">
+          <h3 class="project-name">Coomera 24</h3>
+          <div class="project-meta">4 Bed &middot; 2.5 Bath &middot; 248m²</div>
+        </div>
+      </a>
+      <a href="#" class="project-card project-card-6">
+        <div class="project-image"></div>
+        <div class="project-body">
+          <h3 class="project-name">Southport 30</h3>
+          <div class="project-meta">4 Bed &middot; 3 Bath &middot; 302m²</div>
+        </div>
+      </a>
+    </div>
+    <div class="projects-cta-wrap">
+      <a href="#" class="projects-cta">View all designs</a>
+    </div>
+  </div>
+</section>
+
+<section class="pillars">
+  <div class="section-inner">
+    <div class="pillars-head">
+      <div class="projects-eyebrow">Why LDC Built</div>
+      <h2 class="projects-title">Four <em>foundations.</em></h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-6 9 6v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path d="M9 22V12h6v10"/></svg>
+        </div>
+        <h3 class="pillar-title">Planning</h3>
+        <p class="pillar-desc">We handle every step of the process — approvals, engineering, drafting — so you can focus on the life ahead, not the paperwork.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <h3 class="pillar-title">Innovation</h3>
+        <p class="pillar-desc">Modern amenities, thoughtful layouts and contemporary finishes — designed for the way South East Queensland families actually live.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3 class="pillar-title">Quality</h3>
+        <p class="pillar-desc">Continuous product improvement, tradespeople we know and trust, and quality assurance checkpoints at every stage of the build.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+        </div>
+        <h3 class="pillar-title">Ethical Practice</h3>
+        <p class="pillar-desc">Transparent contracts, honest communication, and a commitment to doing right by every client — from first enquiry through handover.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const dot = document.getElementById('dot');
+  const ring = document.getElementById('ring');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+  });
+  function animate() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+  document.querySelectorAll('a, button, .project-card, .award-badge').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('active'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('active'));
+  });
+</script>
+</body>
+</html>

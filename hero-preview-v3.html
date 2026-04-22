@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LDC Built — Creation Homes Direction Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600&family=Style+Script&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Warmer Creation Homes-inspired palette */
+  --cream: #F5F1EA;
+  --cream-warm: #EFE9DD;
+  --ivory: #FAF7F1;
+  --charcoal: #1F2A2E;       /* deeper, slightly warmer than before */
+  --navy: #253339;
+  --sage: #8A9A8B;            /* muted sage secondary */
+  --sage-deep: #5C6B5E;
+  --stone: #A89C8A;           /* warm stone accent */
+  --soft: #E5DFD2;
+  --mid: #8A8275;
+  --white: #FFFFFF;
+  --red: #D9232E;             /* kept as rare accent */
+  --radius: 2px;              /* sharper, more architectural */
+  --radius-lg: 4px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-weight: 400;
+  line-height: 1.55;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
+@media (hover: none) { body { cursor: auto; } }
+
+/* ============ CURSOR (kept, smaller red dot) ============ */
+.cursor-dot, .cursor-ring {
+  position: fixed; pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+.cursor-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--red);
+  transition: width 0.25s var(--ease), height 0.25s var(--ease);
+}
+.cursor-ring {
+  width: 30px; height: 30px;
+  border: 1px solid var(--charcoal);
+  border-radius: 50%;
+  opacity: 0.3;
+  transition: width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s ease, border-color 0.3s ease;
+}
+.cursor-dot.active { width: 8px; height: 8px; }
+.cursor-ring.active { width: 56px; height: 56px; opacity: 0.5; border-color: var(--red); }
+@media (hover: none) { .cursor-dot, .cursor-ring { display: none; } }
+
+/* ============ NAV ============ */
+nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 28px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav.scrolled {
+  position: fixed;
+  background: rgba(250, 247, 241, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 18px 48px;
+  border-bottom: 1px solid var(--soft);
+}
+.logo {
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+nav.scrolled .logo { color: var(--charcoal); }
+
+.nav-links {
+  display: flex; gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease, color 0.3s ease;
+  position: relative;
+  padding: 4px 0;
+}
+.nav-links a:hover { opacity: 0.7; }
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 1px;
+  background: var(--red);
+}
+nav.scrolled .nav-links a { color: var(--charcoal); }
+
+.nav-cta {
+  font-family: 'Inter', sans-serif;
+  padding: 10px 24px;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.4);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.nav-cta:hover {
+  background: var(--white);
+  color: var(--charcoal);
+  border-color: var(--white);
+}
+nav.scrolled .nav-cta {
+  color: var(--charcoal);
+  border-color: var(--charcoal);
+}
+nav.scrolled .nav-cta:hover {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 720px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1F2A2E 0%, #2d3a3f 40%, #44514e 100%);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><defs><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/></filter></defs><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 75% 40%, rgba(138, 154, 139, 0.15) 0%, transparent 60%);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(31, 42, 46, 0.3) 0%, transparent 30%, rgba(31, 42, 46, 0.7) 100%);
+}
+
+/* Overlay script - the "Creative By Nature" style */
+.hero-script {
+  position: absolute;
+  top: 22%;
+  right: 8%;
+  font-family: 'Style Script', cursive;
+  font-size: clamp(80px, 12vw, 180px);
+  color: rgba(255, 255, 255, 0.12);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  z-index: 1;
+  text-align: right;
+}
+.hero-script span {
+  display: block;
+}
+.hero-script .accent {
+  color: rgba(217, 35, 46, 0.28);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 48px 96px;
+  color: var(--white);
+}
+
+.hero-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--red);
+}
+
+.hero-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(48px, 7vw, 104px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  max-width: 1100px;
+  margin-bottom: 40px;
+}
+.hero-title .light {
+  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+}
+.hero-title em {
+  font-family: 'Style Script', cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.95em;
+  color: var(--sage);
+  display: inline-block;
+  padding: 0 0.05em;
+  line-height: 0.8;
+  vertical-align: -0.05em;
+}
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 80px;
+  align-items: end;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.hero-intro {
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  max-width: 560px;
+  font-weight: 300;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 32px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+  border: 1px solid;
+  font-family: 'Inter', sans-serif;
+  cursor: none;
+}
+.btn-filled {
+  background: var(--white);
+  color: var(--charcoal);
+  border-color: var(--white);
+}
+.btn-filled:hover {
+  background: transparent;
+  color: var(--white);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255,255,255,0.4);
+}
+.btn-outline:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.08);
+}
+.btn-arrow {
+  width: 6px; height: 6px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.3s var(--ease);
+}
+.btn:hover .btn-arrow {
+  transform: rotate(45deg) translate(3px, -3px);
+}
+
+/* Scroll indicator with tiny red dot */
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 48px;
+  z-index: 3;
+  color: rgba(255,255,255,0.5);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.scroll-hint .dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(4px); opacity: 0.4; }
+}
+
+/* ============ INTRO SECTION ============ */
+.intro {
+  background: var(--ivory);
+  padding: 140px 48px;
+  position: relative;
+}
+.intro-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.4fr;
+  gap: 120px;
+  align-items: start;
+}
+
+.intro-left {
+  position: sticky;
+  top: 120px;
+}
+
+.intro-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.intro-eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--red);
+}
+
+.intro-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(40px, 4.5vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+  margin-bottom: 32px;
+}
+.intro-title em {
+  font-family: 'Style Script', cursive;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--sage-deep);
+  display: block;
+  font-size: 1.15em;
+  line-height: 0.9;
+  margin-top: 0.1em;
+}
+
+.intro-body p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--navy);
+  margin-bottom: 24px;
+  max-width: 640px;
+  font-weight: 300;
+}
+.intro-body p:first-of-type {
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--charcoal);
+  font-weight: 400;
+}
+.intro-body p strong {
+  font-weight: 500;
+  color: var(--charcoal);
+  position: relative;
+}
+.intro-body p strong::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 1px;
+  background: var(--red);
+  opacity: 0.5;
+}
+
+/* ============ DESIGNS GRID ============ */
+.designs-section {
+  background: var(--cream);
+  padding: 140px 48px;
+  position: relative;
+}
+.designs-head {
+  max-width: 1440px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+.designs-head-title {
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(40px, 4.5vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+}
+.designs-head-title em {
+  font-family: 'Style Script', cursive;
+  font-style: normal;
+  color: var(--sage-deep);
+  font-size: 1.15em;
+  line-height: 0.9;
+  display: block;
+}
+.designs-head-intro {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--navy);
+  font-weight: 300;
+  padding-bottom: 12px;
+}
+
+.designs-grid {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px 32px;
+}
+
+.design-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: none;
+}
+.design-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--sage);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 24px;
+}
+.design-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--charcoal) 0%, var(--sage-deep) 60%, var(--sage) 100%);
+}
+.design-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><defs><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0'/></filter></defs><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  transition: transform 0.8s var(--ease);
+}
+.design-card:hover .design-image::after {
+  transform: scale(1.04);
+}
+
+.design-card-2 .design-image::before {
+  background: linear-gradient(135deg, #3d4a47 0%, #5C6B5E 50%, #A89C8A 100%);
+}
+.design-card-3 .design-image::before {
+  background: linear-gradient(135deg, #2d3a3f 0%, #44514e 50%, #8A9A8B 100%);
+}
+
+.design-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 4px;
+}
+.design-name {
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+  color: var(--charcoal);
+  line-height: 1;
+}
+.design-specs {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+.design-cta {
+  margin-top: 16px;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: gap 0.3s var(--ease);
+}
+.design-card:hover .design-cta {
+  gap: 16px;
+}
+.design-cta::after {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--charcoal);
+  transition: background 0.3s ease;
+}
+.design-card:hover .design-cta::after {
+  background: var(--red);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 960px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 24px 48px; }
+  .hero-bottom { grid-template-columns: 1fr; gap: 24px; }
+  .hero-actions { justify-content: flex-start; }
+  .hero-script { font-size: 80px; top: 12%; right: 20px; }
+  .scroll-hint { left: 24px; }
+  .intro { padding: 80px 24px; }
+  .intro-inner { grid-template-columns: 1fr; gap: 48px; }
+  .intro-left { position: static; }
+  .designs-section { padding: 80px 24px; }
+  .designs-head { grid-template-columns: 1fr; gap: 32px; margin-bottom: 48px; }
+  .designs-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-ring" id="ring"></div>
+<div class="cursor-dot" id="dot"></div>
+
+<nav id="nav">
+  <a href="#" class="logo">LDC · Built</a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#">Designs</a></li>
+    <li><a href="#">Built</a></li>
+    <li><a href="#">Regions</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-cta">Enquire</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-script">
+    <span>Built</span>
+    <span class="accent">By Nature.</span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Residential Builders · South East Queensland</div>
+    <h1 class="hero-title">
+      Considered homes,<br>
+      <span class="light">shaped for the way you</span> <em>live</em><span style="color: var(--red)">.</span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-intro">
+        LDC Built delivers considered residential homes across Brisbane and the Gold Coast — fifteen fixed-price designs spanning first-home footprints to architectural family residences, each crafted to the same exacting standard.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-outline">Our story <span class="btn-arrow"></span></a>
+        <a href="#" class="btn btn-filled">Explore designs <span class="btn-arrow"></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span class="dot"></span>
+    Scroll to explore
+  </div>
+</section>
+
+<section class="intro">
+  <div class="intro-inner">
+    <div class="intro-left">
+      <div class="intro-eyebrow">About LDC Built</div>
+      <h2 class="intro-title">
+        Built by nature,<br>
+        <em>shaped</em> by design.
+      </h2>
+    </div>
+    <div class="intro-body">
+      <p>
+        We believe the home you live in should be a considered reflection of the life you want to live — not a compromise between what's available and what's affordable.
+      </p>
+      <p>
+        Since 2014, LDC Built has been delivering residential homes across <strong>Brisbane and the Gold Coast</strong> — carefully considered designs, fixed-price contracts, and a single point of contact from first enquiry through to handover. Our portfolio spans efficient first-home footprints through to architectural family residences, each built to the same exacting standard.
+      </p>
+      <p>
+        We work across two regions exclusively, which means our site supervisors are never more than a short drive from your build. It's a deliberate constraint — and one of the reasons our homes get delivered on time, on budget, and to the standard that earns us 42% repeat clients.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="designs-section">
+  <div class="designs-head">
+    <h2 class="designs-head-title">
+      Dream home<br>
+      <em>designs.</em>
+    </h2>
+    <p class="designs-head-intro">
+      Fifteen fixed-price designs, carefully considered for South East Queensland's climate and lifestyle. From efficient single-storey footprints to generous family residences — each designed to fit the way you actually live.
+    </p>
+  </div>
+  <div class="designs-grid">
+    <a href="#" class="design-card design-card-1">
+      <div class="design-image"></div>
+      <div class="design-meta">
+        <h3 class="design-name">Ashgrove 17</h3>
+        <span class="design-specs">3 · 2 · 1 · 176m²</span>
+      </div>
+      <div class="design-cta">View design</div>
+    </a>
+    <a href="#" class="design-card design-card-2">
+      <div class="design-image"></div>
+      <div class="design-meta">
+        <h3 class="design-name">Paddington 28</h3>
+        <span class="design-specs">5 · 3 · 2 · 284m²</span>
+      </div>
+      <div class="design-cta">View design</div>
+    </a>
+    <a href="#" class="design-card design-card-3">
+      <div class="design-image"></div>
+      <div class="design-meta">
+        <h3 class="design-name">Burleigh 23</h3>
+        <span class="design-specs">4 · 2 · 2 · 232m²</span>
+      </div>
+      <div class="design-cta">View design</div>
+    </a>
+  </div>
+</section>
+
+<script>
+  // Cursor
+  const dot = document.getElementById('dot');
+  const ring = document.getElementById('ring');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+  });
+  function animate() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+  document.querySelectorAll('a, button, .design-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      dot.classList.add('active');
+      ring.classList.add('active');
+    });
+    el.addEventListener('mouseleave', () => {
+      dot.classList.remove('active');
+      ring.classList.remove('active');
+    });
+  });
+
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+</script>
+</body>
+</html>
