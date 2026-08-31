@@ -23,6 +23,7 @@
   --container: 1440px;
   --gutter: 40px;
   --gutter-mobile: 24px;
+  --nav-h: 86px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -388,7 +389,7 @@ nav.site-nav {
   content: ''; width: 5px; height: 5px; border-radius: 50%;
   background: var(--red);
 }
-.card-price {
+.card-badge {
   position: absolute; top: 16px; right: 16px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
@@ -568,4 +569,81 @@ footer.site-footer {
   text-decoration: none;
   padding: 16px 0;
   border-bottom: 1px solid var(--soft);
+}
+
+
+/* ============ DESIGN CARD IMAGERY ============ */
+.card-img > img.card-photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform 0.6s var(--ease);
+}
+.design-card:hover .card-img > img.card-photo { transform: scale(1.04); }
+.card-img.is-plan > img.card-photo { object-fit: contain; padding: 12px; background: var(--white); }
+.card-img.is-plan::after { opacity: 0; }
+.card-provisional .card-badge { background: rgba(107, 116, 128, 0.75); }
+
+/* ============ VARIANT SELECTOR (design landing pages) ============ */
+.variants { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter) 96px; }
+.variant-tabs {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  background: var(--off-white);
+  padding: 4px; border-radius: var(--radius-pill);
+  border: 1px solid var(--soft);
+  margin-bottom: 32px; width: fit-content; max-width: 100%;
+}
+.variant-tab {
+  border: none; background: none; cursor: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--mid); padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  transition: all 0.25s ease;
+}
+.variant-tab:hover { background: var(--white); color: var(--charcoal); }
+.variant-tab.active { background: var(--charcoal); color: var(--white); }
+.variant-panel { display: none; }
+.variant-panel.active { display: block; }
+.variant-layout { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: start; }
+.plan-figure {
+  background: var(--white);
+  border: 1px solid var(--soft);
+  border-radius: var(--radius-lg);
+  padding: 24px; margin-bottom: 16px;
+}
+.plan-figure img { width: 100%; height: auto; }
+.plan-figure-cap {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--mid); margin-bottom: 12px;
+}
+.variant-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--soft); border: 1px solid var(--soft); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
+.variant-spec { background: var(--white); padding: 18px 20px; }
+.variant-spec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--mid); margin-bottom: 6px;
+}
+.variant-spec-value {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 26px; font-weight: 500; color: var(--charcoal); letter-spacing: -0.02em;
+}
+.variant-spec-value small { font-size: 13px; color: var(--mid); margin-left: 2px; }
+.variant-rooms { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+.room-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--slate); background: var(--white);
+  border: 1px solid var(--soft); border-radius: var(--radius-pill);
+  padding: 5px 12px;
+}
+.variant-note {
+  font-size: 12px; color: var(--mid); line-height: 1.5;
+  padding-top: 16px; border-top: 1px solid var(--soft);
+}
+@media (max-width: 900px) {
+  .variant-layout { grid-template-columns: 1fr; gap: 24px; }
+  .variants { padding-bottom: 64px; }
 }
