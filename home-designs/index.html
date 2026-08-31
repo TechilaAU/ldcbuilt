@@ -293,9 +293,10 @@
     return `
       <a href="${d.slug}.html" class="design-card${provisional ? ' card-provisional' : ''}">
         <div class="card-img${provisional ? ' is-plan' : ''}">
-          <img class="card-photo" src="${d.heroImage}" alt="${d.name} — ${d.collectionLabel}" loading="lazy">
+          <img class="card-photo" src="../${d.heroImage}" alt="${d.name} — ${d.collectionLabel}" loading="lazy">
           <span class="card-code">${d.collectionLabel}</span>
           <span class="card-badge">${d.variantCount} layout${d.variantCount > 1 ? 's' : ''}</span>
+          ${d.facades.length ? `<span class="card-facades">${d.facades.length} facade${d.facades.length > 1 ? 's' : ''}</span>` : ''}
         </div>
         <div class="card-body">
           <h3 class="card-name">${d.name}</h3>
