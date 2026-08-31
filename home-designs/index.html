@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home Designs — LDC Built</title>
-<meta name="description" content="Explore 15 fixed-price home designs from LDC Built. Filter by bedrooms, bathrooms, storeys, and size. Brisbane &amp; Gold Coast.">
+<meta name="description" content="Explore 23 home design series and 77 floorplans from LDC Built. Filter by collection, bedrooms, bathrooms, garage, storeys, size and lot width. Brisbane &amp; Gold Coast.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -158,7 +158,7 @@
 
 <section class="designs-hero">
   <div class="pill-tag live">
-    15 Designs
+    23 Series · 77 Floorplans
     <span class="divider"></span>
     Brisbane &amp; Gold Coast
   </div>
@@ -167,43 +167,60 @@
   </h1>
   <div class="designs-hero-bottom">
     <p class="designs-intro">
-      A curated range of fifteen fixed-price designs spanning single and double storey, narrow lot through to acreage. Filter by what matters to you, or scroll the full collection.
+      23 design series holding 77 floorplans between them — narrow-lot single storey through to acreage, split level and dual living. Each series is one design with several size options, so filter to what matters and open a series to compare its layouts.
     </p>
     <div class="designs-count">
-      <span class="count-num" id="count-display">15</span>
-      Designs available
+      <span class="count-num" id="count-display">23</span>
+      Series matching
     </div>
   </div>
 </section>
 
 <section class="filters">
   <div class="filters-inner">
-    <span class="filter-label">Storeys</span>
-    <div class="filter-group" data-filter="storeys">
+    <span class="filter-label">Collection</span>
+    <div class="filter-group" data-filter="collection">
       <button class="filter-btn active" data-value="all">All</button>
-      <button class="filter-btn" data-value="1">Single</button>
-      <button class="filter-btn" data-value="2">Double</button>
+      <button class="filter-btn" data-value="single-storey">Single</button>
+      <button class="filter-btn" data-value="double-storey">Double</button>
+      <button class="filter-btn" data-value="acreage">Acreage</button>
+      <button class="filter-btn" data-value="split-level">Split</button>
+      <button class="filter-btn" data-value="duplex">Duplex</button>
     </div>
     <span class="filter-label">Beds</span>
     <div class="filter-group" data-filter="beds">
       <button class="filter-btn active" data-value="all">All</button>
       <button class="filter-btn" data-value="3">3</button>
       <button class="filter-btn" data-value="4">4</button>
-      <button class="filter-btn" data-value="5+">5+</button>
+      <button class="filter-btn" data-value="5">5+</button>
     </div>
     <span class="filter-label">Baths</span>
     <div class="filter-group" data-filter="baths">
       <button class="filter-btn active" data-value="all">All</button>
       <button class="filter-btn" data-value="2">2</button>
-      <button class="filter-btn" data-value="2.5+">2.5+</button>
-      <button class="filter-btn" data-value="3+">3+</button>
+      <button class="filter-btn" data-value="3">3+</button>
+    </div>
+    <span class="filter-label">Garage</span>
+    <div class="filter-group" data-filter="cars">
+      <button class="filter-btn active" data-value="all">All</button>
+      <button class="filter-btn" data-value="1">1</button>
+      <button class="filter-btn" data-value="2">2</button>
+      <button class="filter-btn" data-value="3">3+</button>
+    </div>
+    <span class="filter-label">Storeys</span>
+    <div class="filter-group" data-filter="storeys">
+      <button class="filter-btn active" data-value="all">All</button>
+      <button class="filter-btn" data-value="1">Single</button>
+      <button class="filter-btn" data-value="2">Double</button>
     </div>
     <span class="filter-label">Size</span>
     <div class="filter-group" data-filter="size">
       <button class="filter-btn active" data-value="all">All</button>
-      <button class="filter-btn" data-value="small">&lt;200m²</button>
-      <button class="filter-btn" data-value="medium">200–250m²</button>
-      <button class="filter-btn" data-value="large">250m²+</button>
+      <button class="filter-btn" data-value="under-200">&lt;200m&sup2;</button>
+      <button class="filter-btn" data-value="200-250">200&ndash;250</button>
+      <button class="filter-btn" data-value="250-300">250&ndash;300</button>
+      <button class="filter-btn" data-value="300-350">300&ndash;350</button>
+      <button class="filter-btn" data-value="350-plus">350m&sup2;+</button>
     </div>
     <button class="filter-clear" id="clear-filters">Clear</button>
   </div>
@@ -211,8 +228,8 @@
 
 <section class="grid-section">
   <div class="results-meta">
-    <span id="results-text">Showing all 15 designs</span>
-    <span>Sorted by code ↓</span>
+    <span id="results-text">Showing all 23 series</span>
+    <span>Sorted by collection ↓</span>
   </div>
   <div class="design-grid" id="designs-grid"></div>
 </section>
@@ -262,25 +279,31 @@
 <script src="../assets/js/designs-data.js"></script>
 <script src="../assets/js/site.js"></script>
 <script>
-  const state = { storeys: 'all', beds: 'all', baths: 'all', size: 'all' };
+  const state = { collection: 'all', beds: 'all', baths: 'all', cars: 'all', storeys: 'all', size: 'all', lot: 'all' };
   const grid = document.getElementById('designs-grid');
   const countDisplay = document.getElementById('count-display');
   const resultsText = document.getElementById('results-text');
 
+  const ORDER = ['single-storey', 'double-storey', 'acreage', 'split-level', 'duplex'];
+  const sorted = LDC_DESIGNS.slice().sort((a, b) =>
+    (ORDER.indexOf(a.collection) - ORDER.indexOf(b.collection)) || (a.areaMinM2 - b.areaMinM2));
+
   function cardHTML(d) {
+    const provisional = d.heroType === '3d-view';
     return `
-      <a href="${d.slug}.html" class="design-card">
-        <div class="card-img" style="background: linear-gradient(${d.gradient});">
-          <span class="card-code">${d.code}</span>
-          <span class="card-price">From $${(d.priceFrom/1000).toFixed(0)}k</span>
+      <a href="${d.slug}.html" class="design-card${provisional ? ' card-provisional' : ''}">
+        <div class="card-img${provisional ? ' is-plan' : ''}">
+          <img class="card-photo" src="${d.heroImage}" alt="${d.name} — ${d.collectionLabel}" loading="lazy">
+          <span class="card-code">${d.collectionLabel}</span>
+          <span class="card-badge">${d.variantCount} layout${d.variantCount > 1 ? 's' : ''}</span>
         </div>
         <div class="card-body">
           <h3 class="card-name">${d.name}</h3>
-          <p class="card-tagline">${d.tagline}</p>
+          <p class="card-tagline">${ldcAreaLabel(d)} · ${ldcBedLabel(d)} · from ${d.minLotWidthM}m lots</p>
           <div class="card-specs">
-            <span class="spec"><strong>${d.beds}</strong> Bed</span>
-            <span class="spec"><strong>${d.baths}</strong> Bath</span>
-            <span class="spec"><strong>${d.m2}</strong> m²</span>
+            <span class="spec"><strong>${d.bedsMax}</strong> Bed</span>
+            <span class="spec"><strong>${d.bathsMax}</strong> Bath</span>
+            <span class="spec"><strong>${d.carsMax}</strong> Car</span>
           </div>
           <div class="card-arrow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -290,31 +313,13 @@
     `;
   }
 
-  function filter(d) {
-    if (state.storeys !== 'all' && d.storeys != state.storeys) return false;
-    if (state.beds !== 'all') {
-      if (state.beds === '5+' && d.beds < 5) return false;
-      if (state.beds !== '5+' && d.beds != state.beds) return false;
-    }
-    if (state.baths !== 'all') {
-      if (state.baths === '2' && d.baths !== 2) return false;
-      if (state.baths === '2.5+' && d.baths < 2.5) return false;
-      if (state.baths === '3+' && d.baths < 3) return false;
-    }
-    if (state.size !== 'all') {
-      if (state.size === 'small' && d.m2 >= 200) return false;
-      if (state.size === 'medium' && (d.m2 < 200 || d.m2 > 250)) return false;
-      if (state.size === 'large' && d.m2 <= 250) return false;
-    }
-    return true;
-  }
-
   function render() {
-    const matches = LDC_DESIGNS.filter(filter);
+    const matches = sorted.filter(s => ldcMatchesFilters(s, state));
+    const plans = matches.reduce((n, s) => n + s.variantCount, 0);
     countDisplay.textContent = matches.length;
-    resultsText.textContent = matches.length === LDC_DESIGNS.length
-      ? `Showing all ${matches.length} designs`
-      : `Showing ${matches.length} of ${LDC_DESIGNS.length} designs`;
+    resultsText.textContent = matches.length === sorted.length
+      ? `Showing all ${matches.length} series · ${plans} floorplans`
+      : `Showing ${matches.length} of ${sorted.length} series · ${plans} floorplans`;
     grid.innerHTML = matches.length
       ? matches.map(cardHTML).join('')
       : `<div class="no-results">

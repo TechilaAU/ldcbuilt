@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LDC Built — New Homes, Brisbane &amp; Gold Coast</title>
-<meta name="description" content="LDC Built delivers considered residential homes across Brisbane and the Gold Coast. Fifteen fixed-price designs, one standard of craft.">
+<meta name="description" content="LDC Built delivers considered residential homes across Brisbane and the Gold Coast. 23 design series, 77 floorplans, one standard of craft.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -364,11 +364,20 @@
   }
   .cta-actions .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
 
-  /* Nav treatment when over dark hero */
+  /* Nav treatment when over dark hero.
+     The nav must OVERLAY the hero for this styling to be legible — sticky
+     leaves it in flow above the hero, on the light page background, which
+     renders the white logo and translucent links invisible. */
   body.has-hero-video nav.site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
     background: transparent;
     border-bottom-color: transparent;
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
+  /* nav is out of flow now, so the hero starts at y=0 and the hero's own
+     padding carries the clearance the nav used to occupy */
+  body.has-hero-video .hero-inner { padding-top: calc(72px + var(--nav-h)); }
   body.has-hero-video nav.site-nav .logo,
   body.has-hero-video nav.site-nav .logo-sub { color: var(--white); }
   body.has-hero-video nav.site-nav .nav-links {
@@ -423,6 +432,7 @@
     .stat:nth-child(-n+2) { border-bottom: 1px solid var(--soft); }
     .hero { min-height: 75vh; }
     .hero-inner { padding-top: 48px; padding-bottom: 32px; }
+    body.has-hero-video .hero-inner { padding-top: calc(48px + var(--nav-h)); }
     .hero-grid { grid-template-columns: 1fr; gap: 32px; }
     .hero-ctas { justify-content: flex-start; }
     .process-steps { grid-template-columns: 1fr 1fr; }
@@ -477,7 +487,7 @@
       </h1>
       <div class="hero-grid">
         <p class="hero-intro">
-          LDC Built delivers considered residential homes across Brisbane and the Gold Coast. Fifteen fixed-price designs spanning first-home footprints to architectural family residences — each built to the same standard.
+          LDC Built delivers considered residential homes across Brisbane and the Gold Coast. 23 design series and 77 floorplans, spanning narrow-lot first homes through to acreage and dual living — each built to the same standard.
         </p>
         <div class="hero-ctas">
           <a href="previous-builds/index.html" class="btn-secondary btn-arrow">
@@ -543,7 +553,7 @@
       <div>
         <div class="step-num">Step 02</div>
         <h3 class="step-title">Design</h3>
-        <p class="step-desc">Select from fifteen fixed-price designs, or tailor one to your site. We handle the drawings, approvals, and engineering.</p>
+        <p class="step-desc">Select from 77 floorplans across 23 series, or tailor one to your site. We handle the drawings, approvals, and engineering.</p>
       </div>
     </div>
     <div class="step">
@@ -690,21 +700,26 @@
 <script src="assets/js/site.js"></script>
 <script>
   // Render featured 3 cards from shared data
-  const featured = LDC_DESIGNS.slice(0, 3);
+  // Three that show the spread: compact, family, acreage
+  const featuredSlugs = ['ashford', 'kensington', 'braxton'];
+  const featured = featuredSlugs
+    .map(s => LDC_DESIGNS.find(d => d.slug === s))
+    .filter(Boolean);
   const grid = document.getElementById('featured-grid');
   grid.innerHTML = featured.map(d => `
-    <a href="home-designs/${d.slug}.html" class="design-card">
-      <div class="card-img" style="background: linear-gradient(${d.gradient});">
-        <span class="card-code">${d.code}</span>
-        <span class="card-price">From $${(d.priceFrom/1000).toFixed(0)}k</span>
+    <a href="home-designs/${d.slug}.html" class="design-card${d.heroType === '3d-view' ? ' card-provisional' : ''}">
+      <div class="card-img${d.heroType === '3d-view' ? ' is-plan' : ''}">
+        <img class="card-photo" src="${d.heroImage}" alt="${d.name} — ${d.collectionLabel}" loading="lazy">
+        <span class="card-code">${d.collectionLabel}</span>
+        <span class="card-badge">${d.variantCount} layout${d.variantCount > 1 ? 's' : ''}</span>
       </div>
       <div class="card-body">
         <h3 class="card-name">${d.name}</h3>
-        <p class="card-tagline">${d.tagline}</p>
+        <p class="card-tagline">${ldcAreaLabel(d)} · ${ldcBedLabel(d)}</p>
         <div class="card-specs">
-          <span class="spec"><strong>${d.beds}</strong> Bed</span>
-          <span class="spec"><strong>${d.baths}</strong> Bath</span>
-          <span class="spec"><strong>${d.m2}</strong> m²</span>
+          <span class="spec"><strong>${d.bedsMax}</strong> Bed</span>
+          <span class="spec"><strong>${d.bathsMax}</strong> Bath</span>
+          <span class="spec"><strong>${d.carsMax}</strong> Car</span>
         </div>
         <div class="card-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -713,6 +728,17 @@
     </a>
   `).join('');
   if (window.bindCursor) window.bindCursor();
+
+  // Keep --nav-h in sync with the real nav height (drives the hero offset)
+  (function initNavHeight() {
+    const nav = document.querySelector('nav.site-nav');
+    if (!nav) return;
+    const set = () => document.documentElement.style
+      .setProperty('--nav-h', nav.offsetHeight + 'px');
+    set();
+    window.addEventListener('resize', set, { passive: true });
+    window.addEventListener('load', set);
+  })();
 
   // Toggle nav treatment once we've scrolled past the hero
   (function initHeroNavScroll() {

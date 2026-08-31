@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fairmont — LDC Built</title>
+<meta name="description" content="Fairmont — Acreage single storey with a wide entertaining core. 5 layouts from 276m² to 356m². LDC Built, Brisbane &amp; Gold Coast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+  .design-hero { max-width: var(--container); margin: 0 auto; padding: 48px var(--gutter) 24px; }
+  .design-hero-meta { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; margin-bottom: 32px; flex-wrap: wrap; }
+  .design-hero-title { margin-bottom: 24px; max-width: 1100px; }
+  .design-hero-tagline { font-size: 20px; color: var(--slate); max-width: 640px; line-height: 1.45; margin-bottom: 48px; }
+
+  /* Showcase image */
+  .showcase {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 48px;
+  }
+  .showcase-inner {
+    aspect-ratio: 16/9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #3E4B57 0%, #1A1F24 100%);
+  }
+  .showcase-inner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .showcase-code {
+    position: absolute; top: 32px; left: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+    background: rgba(26, 31, 36, 0.4);
+    backdrop-filter: blur(8px);
+    padding: 10px 16px;
+    border-radius: var(--radius-pill);
+    display: inline-flex; align-items: center; gap: 8px;
+    z-index: 2;
+  }
+  .showcase-code::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red);
+  }
+  .showcase-label {
+    position: absolute; bottom: 32px; left: 32px;
+    color: var(--white);
+    z-index: 2;
+  }
+  .showcase-label-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .showcase-label-main {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 24px; font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  /* Specs grid */
+  .specs-strip {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 96px;
+  }
+  .specs-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+    border-top: 1px solid var(--soft);
+    border-bottom: 1px solid var(--soft);
+  }
+  .spec-item { padding: 32px 20px; border-right: 1px solid var(--soft); }
+  .spec-item:last-child { border-right: none; }
+  .spec-item-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: var(--mid); text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .spec-item-label::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red);
+  }
+  .spec-item-value {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 32px; font-weight: 500;
+    color: var(--charcoal);
+    letter-spacing: -0.025em;
+    line-height: 1;
+    display: flex; align-items: baseline; gap: 4px;
+  }
+  .spec-item-value small { font-size: 14px; color: var(--mid); font-weight: 400; }
+
+  /* Detail columns */
+  .detail-section {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 96px;
+  }
+  .detail-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    padding-top: 64px;
+    border-top: 1px solid var(--soft);
+  }
+  .detail-left .section-kicker { margin-bottom: 24px; }
+  .detail-summary {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 28px; font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+    line-height: 1.25;
+    margin-bottom: 32px;
+  }
+  .detail-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .detail-body p {
+    font-size: 16px; line-height: 1.6;
+    color: var(--slate);
+    margin-bottom: 20px;
+  }
+  .inclusion-list { list-style: none; }
+  .inclusion-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--soft);
+    font-size: 14px;
+    color: var(--slate);
+    display: flex; gap: 16px;
+  }
+  .inclusion-list li::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  /* Facades */
+  .facades { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter) 96px; }
+  .facades-head { margin-bottom: 48px; }
+  .facades-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .facade-card {
+    aspect-ratio: 4/3;
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--soft);
+  }
+  .facade-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(26, 31, 36, 0.1); }
+  .facade-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .facade-label {
+    position: absolute; bottom: 20px; left: 20px;
+    color: var(--white); z-index: 2;
+  }
+  .facade-label-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.6); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .facade-label-main {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 20px; font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  /* Related */
+  .related { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter) 96px; }
+
+  /* Enquiry form */
+  .enquire {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter) 96px;
+  }
+  .enquire-inner {
+    background: var(--charcoal);
+    color: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 64px;
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px;
+    position: relative; overflow: hidden;
+  }
+  .enquire-inner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+  .enquire-content { position: relative; z-index: 2; }
+  .enquire-content .section-kicker { color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+  .enquire-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 48px; font-weight: 500;
+    color: var(--white); letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .enquire-title .italic { font-style: italic; color: rgba(255,255,255,0.6); font-weight: 400; }
+  .enquire-title .dot { color: var(--red); font-style: normal; }
+  .enquire-intro { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+  .enquire-form { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-field label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    outline: none;
+    border-color: var(--red);
+    background: rgba(255,255,255,0.06);
+  }
+  .form-field textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    padding: 16px 28px;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-pill);
+    font-size: 14px; font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: none;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    display: inline-flex; align-items: center; gap: 10px; justify-content: center;
+  }
+  .form-submit:hover { background: var(--red-hover); transform: translateY(-2px); }
+
+  @media (max-width: 900px) {
+    .specs-grid { grid-template-columns: repeat(3, 1fr); }
+    .spec-item:nth-child(3) { border-right: none; }
+    .spec-item:nth-child(-n+3) { border-bottom: 1px solid var(--soft); }
+    .detail-grid { grid-template-columns: 1fr; gap: 48px; }
+    .facades-grid { grid-template-columns: 1fr; }
+    .enquire-inner { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+    .enquire-title { font-size: 36px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+<style>
+  .plan-note { font-size: 13px; color: var(--mid); margin-top: 8px; }
+  .series-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .facades-grid img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .facade-card { position: relative; overflow: hidden; }
+  .showcase-inner img.showcase-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .showcase-inner.is-plan { background: var(--white); border: 1px solid var(--soft); }
+  .showcase-inner.is-plan img.showcase-photo { object-fit: contain; padding: 24px; }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">LDC <span class="logo-sub">Built</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html" class="active">Designs</a></li>
+      <li><a href="../previous-builds/index.html">Built</a></li>
+      <li><a href="../about/index.html">About</a></li>
+      <li><a href="../contact/index.html">Contact</a></li>
+    </ul>
+    <a href="../contact/index.html" class="nav-cta">Get a quote</a>
+    <button class="mobile-toggle">Menu</button>
+  </div>
+</nav>
+<div class="mobile-drawer">
+  <a href="../index.html">Home</a>
+  <a href="index.html">Designs</a>
+  <a href="../previous-builds/index.html">Built</a>
+  <a href="../about/index.html">About</a>
+  <a href="../contact/index.html">Contact</a>
+</div>
+
+<section class="design-hero container">
+  <div class="breadcrumbs">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Designs</a>
+    <span class="sep">/</span>
+    <span>Fairmont</span>
+  </div>
+  <div class="design-hero-meta">
+    <div class="pill-tag">
+      Acreage
+      <span class="divider"></span>
+      5 layouts
+      <span class="divider"></span>
+      276&ndash;356m&sup2;
+    </div>
+    <div class="pill-tag">From 19.5m lots</div>
+  </div>
+  <h1 class="page-title design-hero-title">
+    The <span class="italic">Fairmont<span class="dot">.</span></span>
+  </h1>
+  <p class="design-hero-tagline">Acreage single storey with a wide entertaining core</p>
+</section>
+
+<section class="showcase">
+  <div class="showcase-inner is-plan">
+    <img class="showcase-photo" src="../assets/designs/fairmont/fairmont-276-3d.webp" alt="Fairmont — Acreage">
+  </div>
+    <p class="plan-note">Concept massing view &mdash; facade renders for this series are in production.</p>
+</section>
+
+<section class="specs-strip">
+  <div class="specs-grid">
+    <div class="spec-item">
+      <div class="spec-item-label">Bedrooms</div>
+      <div class="spec-item-value">4</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-item-label">Bathrooms</div>
+      <div class="spec-item-value">2&ndash;3</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-item-label">Garage</div>
+      <div class="spec-item-value">2</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-item-label">Total area</div>
+      <div class="spec-item-value">276&ndash;356<small>m&sup2;</small></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-item-label">Lot width from</div>
+      <div class="spec-item-value">19.5<small>m</small></div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-item-label">Storeys</div>
+      <div class="spec-item-value">Single</div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="detail-grid">
+    <div class="detail-left">
+      <div class="section-kicker"><span class="num">01</span> Overview</div>
+      <p class="detail-summary">Five layouts from 276m² to 357m² on frontages of 17.9m to 19.3m — a wide, shallow footprint that puts the living and entertaining spaces across the front rather than stacked behind the garage. Four bedrooms throughout, with a third bathroom on the largest plan.</p>
+      <div class="detail-actions">
+        <a href="#enquire" class="btn-primary">Enquire on the Fairmont</a>
+        <a href="index.html" class="btn-secondary btn-arrow">
+          All designs
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="detail-body">
+      <div class="section-kicker"><span class="num">03</span> Standard inclusions</div>
+      <ul class="inclusion-list">
+        <li>Fixed-price QBCC contract with a detailed inclusions schedule</li>
+        <li>Engineered slab and frame to site classification</li>
+        <li>Colorbond roofing with 450mm eaves</li>
+        <li>2400mm ceilings with 2100mm door and window heights</li>
+        <li>Stone benchtops to kitchen and wet areas</li>
+        <li>Ducted air conditioning provision</li>
+        <li>Livable Housing Design Standard 2022 compliance</li>
+        <li>Site supervision from a single point of contact</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="variants">
+  <div class="section-kicker"><span class="num">02</span> Layouts in this series</div>
+  <div class="variant-tabs">
+    <button class="variant-tab active" data-variant="0">276m&sup2; · 4 bed</button>
+    <button class="variant-tab" data-variant="1">284m&sup2; · 4 bed</button>
+    <button class="variant-tab" data-variant="2">324m&sup2; · 4 bed</button>
+    <button class="variant-tab" data-variant="3">335m&sup2; · 4 bed</button>
+    <button class="variant-tab" data-variant="4">356m&sup2; · 4 bed</button>
+  </div>
+  <div class="variant-panel active" data-panel="0">
+    <div class="variant-layout">
+      <div>
+      <div class="plan-figure">
+        <div class="plan-figure-cap">Floor plan · Fairmont 276</div>
+        <img src="../assets/designs/fairmont/fairmont-276-floor.webp" alt="Fairmont 276 floor plan" loading="lazy">
+      </div>
+      </div>
+      <div>
+        <div class="variant-specs">
+        <div class="variant-spec">
+          <div class="variant-spec-label">Total area</div>
+          <div class="variant-spec-value">276<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Living area</div>
+          <div class="variant-spec-value">203<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bedrooms</div>
+          <div class="variant-spec-value">4</div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bathrooms</div>
+          <div class="variant-spec-value">2 <small>+1 powder</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Garage</div>
+          <div class="variant-spec-value">2<small> car · 40m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Footprint</div>
+          <div class="variant-spec-value">18.3<small>m &times; 21.42m</small></div>
+        </div>
+        </div>
+        <div class="variant-rooms"><span class="room-chip">Alfresco</span><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Bed 4</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Family</span><span class="room-chip">Garage</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Master</span><span class="room-chip">Pdr</span><span class="room-chip">Porch</span><span class="room-chip">Wip</span><span class="room-chip">Wir</span></div>
+        <a href="../assets/plans/fairmont/fairmont-276-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
+        <p class="variant-note">Plan code SERIES 13 ASK1. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
+      </div>
+    </div>
+  </div>
+  <div class="variant-panel" data-panel="1">
+    <div class="variant-layout">
+      <div>
+      <div class="plan-figure">
+        <div class="plan-figure-cap">Floor plan · Fairmont 284</div>
+        <img src="../assets/designs/fairmont/fairmont-284-floor.webp" alt="Fairmont 284 floor plan" loading="lazy">
+      </div>
+      </div>
+      <div>
+        <div class="variant-specs">
+        <div class="variant-spec">
+          <div class="variant-spec-label">Total area</div>
+          <div class="variant-spec-value">284<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Living area</div>
+          <div class="variant-spec-value">207<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bedrooms</div>
+          <div class="variant-spec-value">4</div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bathrooms</div>
+          <div class="variant-spec-value">2 <small>+1 powder</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Garage</div>
+          <div class="variant-spec-value">2<small> car · 45m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Footprint</div>
+          <div class="variant-spec-value">17.89<small>m &times; 22.13m</small></div>
+        </div>
+        </div>
+        <div class="variant-rooms"><span class="room-chip">Alfresco</span><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Bed 4</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Garage</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Master</span><span class="room-chip">Pdr</span><span class="room-chip">Porch</span><span class="room-chip">Theatre</span><span class="room-chip">Wip</span><span class="room-chip">Wir</span></div>
+        <a href="../assets/plans/fairmont/fairmont-284-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
+        <p class="variant-note">Plan code SERIES 13 ASK2. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
+      </div>
+    </div>
+  </div>
+  <div class="variant-panel" data-panel="2">
+    <div class="variant-layout">
+      <div>
+      <div class="plan-figure">
+        <div class="plan-figure-cap">Floor plan · Fairmont 324</div>
+        <img src="../assets/designs/fairmont/fairmont-324-floor.webp" alt="Fairmont 324 floor plan" loading="lazy">
+      </div>
+      </div>
+      <div>
+        <div class="variant-specs">
+        <div class="variant-spec">
+          <div class="variant-spec-label">Total area</div>
+          <div class="variant-spec-value">324<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Living area</div>
+          <div class="variant-spec-value">244<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bedrooms</div>
+          <div class="variant-spec-value">4</div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bathrooms</div>
+          <div class="variant-spec-value">2 <small>+1 powder</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Garage</div>
+          <div class="variant-spec-value">2<small> car · 39m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Footprint</div>
+          <div class="variant-spec-value">19.23<small>m &times; 20.67m</small></div>
+        </div>
+        </div>
+        <div class="variant-rooms"><span class="room-chip">Alfresco</span><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Bed 4</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Family</span><span class="room-chip">Garage</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Master</span><span class="room-chip">Patio</span><span class="room-chip">Pdr</span><span class="room-chip">Porch</span><span class="room-chip">Study</span><span class="room-chip">Wip</span><span class="room-chip">Wir</span></div>
+        <a href="../assets/plans/fairmont/fairmont-324-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
+        <p class="variant-note">Plan code SERIES 13 ASK3. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
+      </div>
+    </div>
+  </div>
+  <div class="variant-panel" data-panel="3">
+    <div class="variant-layout">
+      <div>
+      <div class="plan-figure">
+        <div class="plan-figure-cap">Floor plan · Fairmont 335</div>
+        <img src="../assets/designs/fairmont/fairmont-335-floor.webp" alt="Fairmont 335 floor plan" loading="lazy">
+      </div>
+      </div>
+      <div>
+        <div class="variant-specs">
+        <div class="variant-spec">
+          <div class="variant-spec-label">Total area</div>
+          <div class="variant-spec-value">335<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Living area</div>
+          <div class="variant-spec-value">244<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bedrooms</div>
+          <div class="variant-spec-value">4</div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bathrooms</div>
+          <div class="variant-spec-value">2 <small>+1 powder</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Garage</div>
+          <div class="variant-spec-value">2<small> car · 45m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Footprint</div>
+          <div class="variant-spec-value">19.28<small>m &times; 22.17m</small></div>
+        </div>
+        </div>
+        <div class="variant-rooms"><span class="room-chip">Alfresco</span><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Bed 4</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Family</span><span class="room-chip">Garage</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Master</span><span class="room-chip">Patio</span><span class="room-chip">Pdr</span><span class="room-chip">Porch</span><span class="room-chip">Study</span><span class="room-chip">Wip</span><span class="room-chip">Wir</span></div>
+        <a href="../assets/plans/fairmont/fairmont-335-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
+        <p class="variant-note">Plan code SERIES 13 ASK4. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
+      </div>
+    </div>
+  </div>
+  <div class="variant-panel" data-panel="4">
+    <div class="variant-layout">
+      <div>
+      <div class="plan-figure">
+        <div class="plan-figure-cap">Floor plan · Fairmont 356</div>
+        <img src="../assets/designs/fairmont/fairmont-356-floor.webp" alt="Fairmont 356 floor plan" loading="lazy">
+      </div>
+      </div>
+      <div>
+        <div class="variant-specs">
+        <div class="variant-spec">
+          <div class="variant-spec-label">Total area</div>
+          <div class="variant-spec-value">356<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Living area</div>
+          <div class="variant-spec-value">256<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bedrooms</div>
+          <div class="variant-spec-value">4</div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bathrooms</div>
+          <div class="variant-spec-value">3 <small>+1 powder</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Garage</div>
+          <div class="variant-spec-value">2<small> car · 43m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Footprint</div>
+          <div class="variant-spec-value">19.23<small>m &times; 22.33m</small></div>
+        </div>
+        </div>
+        <div class="variant-rooms"><span class="room-chip">Alfresco</span><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Bed 4</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Garage</span><span class="room-chip">Guest</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Master</span><span class="room-chip">Patio</span><span class="room-chip">Pdr</span><span class="room-chip">Porch</span><span class="room-chip">Theatre</span><span class="room-chip">Wip</span><span class="room-chip">Wir</span></div>
+        <a href="../assets/plans/fairmont/fairmont-356-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
+        <p class="variant-note">Plan code SERIES 13 ASK5. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enquire" id="enquire">
+  <div class="enquire-inner">
+    <div class="enquire-content">
+      <div class="section-kicker"><span class="num">04</span> Enquire</div>
+      <h2 class="enquire-title">Enquire on the <span class="italic">Fairmont<span class="dot">.</span></span></h2>
+      <p class="enquire-intro">Tell us a little about your block and your brief. We'll come back within one business day with a personalised quote and any relevant inclusions for your region.</p>
+    </div>
+    <form class="enquire-form">
+      <div class="form-row">
+        <div class="form-field">
+          <label>First name</label>
+          <input type="text" name="firstname" required>
+        </div>
+        <div class="form-field">
+          <label>Last name</label>
+          <input type="text" name="lastname" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="form-field">
+          <label>Phone</label>
+          <input type="tel" name="phone" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Region</label>
+          <select name="region">
+            <option>Brisbane</option>
+            <option>Gold Coast</option>
+            <option>Other / undecided</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Have you got a block?</label>
+          <select name="block">
+            <option>Yes — have a block</option>
+            <option>Looking for house &amp; land</option>
+            <option>Still exploring</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Tell us about your project</label>
+        <textarea name="message" placeholder="Block location, lot size, timing, any specific requirements..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send enquiry
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<section class="related">
+  <div class="section-head">
+    <div>
+      <div class="section-kicker"><span class="num">05</span> Also consider</div>
+      <h2 class="section-title">Related <span class="italic">designs<span class="dot">.</span></span></h2>
+    </div>
+    <a href="index.html" class="btn-ghost btn-sm btn-arrow">
+      View all 23
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="design-grid" id="related-grid"></div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-grid-bg"></div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo">LDC <span class="logo-sub">Built</span></a>
+        <p class="footer-tagline">
+          Residential homes, engineered for <span class="italic">everyday<span class="dot">.</span></span>
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home designs</a></li>
+          <li><a href="../previous-builds/index.html">Completed builds</a></li>
+          <li><a href="../about/index.html">About LDC</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Regions</div>
+        <ul class="footer-links">
+          <li><a href="#">Brisbane</a></li>
+          <li><a href="#">Gold Coast</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:1300000000">1300 000 000</a></li>
+          <li><a href="mailto:hello@ldcbuilt.com.au">hello@ldcbuilt.com.au</a></li>
+          <li>Brisbane · Gold Coast</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LDC Built · QBCC Licence No. 000000</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/designs-data.js"></script>
+<script src="../assets/js/site.js"></script>
+<script>
+  // ---- variant tabs ----
+  (function initVariants() {
+    const tabs = document.querySelectorAll('.variant-tab');
+    const panels = document.querySelectorAll('.variant-panel');
+    tabs.forEach(tab => tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`.variant-panel[data-panel="${tab.dataset.variant}"]`).classList.add('active');
+    }));
+  })();
+
+  // ---- related: same collection first, then nearest by size ----
+  const current = "fairmont";
+  const self = LDC_DESIGNS.find(d => d.slug === current);
+  const related = LDC_DESIGNS
+    .filter(d => d.slug !== current)
+    .sort((a, b) => {
+      const ca = a.collection === self.collection ? 0 : 1;
+      const cb = b.collection === self.collection ? 0 : 1;
+      if (ca !== cb) return ca - cb;
+      return Math.abs(a.areaMinM2 - self.areaMinM2) - Math.abs(b.areaMinM2 - self.areaMinM2);
+    })
+    .slice(0, 3);
+
+  document.getElementById('related-grid').innerHTML = related.map(d => `
+    <a href="${d.slug}.html" class="design-card${d.heroType === '3d-view' ? ' card-provisional' : ''}">
+      <div class="card-img${d.heroType === '3d-view' ? ' is-plan' : ''}">
+        <img class="card-photo" src="../${d.heroImage}" alt="${d.name}" loading="lazy">
+        <span class="card-code">${d.collectionLabel}</span>
+        <span class="card-badge">${d.variantCount} layout${d.variantCount > 1 ? 's' : ''}</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-name">${d.name}</h3>
+        <p class="card-tagline">${ldcAreaLabel(d)} · ${ldcBedLabel(d)}</p>
+        <div class="card-specs">
+          <span class="spec"><strong>${d.bedsMax}</strong> Bed</span>
+          <span class="spec"><strong>${d.bathsMax}</strong> Bath</span>
+          <span class="spec"><strong>${d.carsMax}</strong> Car</span>
+        </div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </a>
+  `).join('');
+  if (window.bindCursor) window.bindCursor();
+</script>
+</body>
+</html>
