@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LDC Built — New Homes, Brisbane &amp; Gold Coast</title>
-<meta name="description" content="LDC Built delivers considered residential homes across Brisbane and the Gold Coast. 23 design series, 77 floorplans, one standard of craft.">
+<meta name="description" content="LDC Built creates thoughtfully designed homes across Brisbane and the Gold Coast. From residential, acreage and double-storey homes to dual-living and fully custom designs, we create quality homes tailored to your block, lifestyle and future.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,14 +21,14 @@
     display: flex;
     flex-direction: column;
   }
-  /* Video layer */
-  .hero-video {
+  /* Render layer */
+  .hero-media {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: 70% center;
     z-index: 0;
   }
   /* Dark gradient overlay for text legibility */
@@ -36,8 +36,8 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(26,31,36,0.55) 0%, rgba(26,31,36,0.35) 40%, rgba(26,31,36,0.85) 100%),
-      linear-gradient(90deg, rgba(26,31,36,0.45) 0%, rgba(26,31,36,0.15) 60%, rgba(26,31,36,0) 100%);
+      linear-gradient(180deg, rgba(26,31,36,0.45) 0%, rgba(26,31,36,0.05) 30%, rgba(26,31,36,0.1) 60%, rgba(26,31,36,0.7) 100%),
+      linear-gradient(90deg, rgba(26,31,36,0.7) 0%, rgba(26,31,36,0.35) 45%, rgba(26,31,36,0) 70%);
     z-index: 1;
     pointer-events: none;
   }
@@ -117,10 +117,6 @@
     background: rgba(255,255,255,0.05);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .hero-video { display: none; }
-    .hero { background: linear-gradient(135deg, #2a333c 0%, #1A1F24 100%); }
-  }
 
   /* Stats */
   .stats-bar {
@@ -159,7 +155,7 @@
   /* Process */
   .process { max-width: var(--container); margin: 0 auto; padding: 48px var(--gutter) 96px; }
   .process-steps {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
     background: var(--soft); border-radius: var(--radius-lg); overflow: hidden;
   }
   .step {
@@ -187,7 +183,16 @@
     color: var(--charcoal);
     margin-bottom: 12px;
   }
-  .step-desc { font-size: 14px; color: var(--mid); line-height: 1.55; }
+  .step-desc { font-size: 14px; color: var(--mid); line-height: 1.6; }
+  .step-numeral {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 88px; line-height: 0.8;
+    color: var(--soft);
+    margin-bottom: 28px;
+    transition: color 0.3s ease;
+  }
+  .step:hover .step-numeral { color: var(--mid); }
+  .step-title .dot { color: var(--red); }
 
   /* Regions */
   .regions { background: var(--charcoal); color: var(--white); position: relative; overflow: hidden; }
@@ -435,7 +440,8 @@
     body.has-hero-video .hero-inner { padding-top: calc(48px + var(--nav-h)); }
     .hero-grid { grid-template-columns: 1fr; gap: 32px; }
     .hero-ctas { justify-content: flex-start; }
-    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .step { min-height: 0; }
     .regions-split { grid-template-columns: 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; }
     .cta-inner { grid-template-columns: 1fr; padding: 48px 32px; }
@@ -450,27 +456,28 @@
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="home-designs/index.html">Designs</a></li>
+      <li><a href="house-and-land/index.html">House &amp; Land</a></li>
+      <li><a href="inclusions/index.html">Inclusions</a></li>
       <li><a href="previous-builds/index.html">Built</a></li>
       <li><a href="about/index.html">About</a></li>
       <li><a href="contact/index.html">Contact</a></li>
     </ul>
-    <a href="contact/index.html" class="nav-cta">Get a quote</a>
+    <a href="contact/index.html" class="nav-cta">Discuss your project</a>
     <button class="mobile-toggle">Menu</button>
   </div>
 </nav>
 <div class="mobile-drawer">
   <a href="index.html">Home</a>
   <a href="home-designs/index.html">Designs</a>
+  <a href="house-and-land/index.html">House &amp; Land</a>
+  <a href="inclusions/index.html">Inclusions</a>
   <a href="previous-builds/index.html">Built</a>
   <a href="about/index.html">About</a>
   <a href="contact/index.html">Contact</a>
 </div>
 
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/images/hero-poster.jpg">
-    <source src="assets/video/hero.mp4" type="video/mp4">
-    <source src="assets/video/hero.webm" type="video/webm">
-  </video>
+  <img class="hero-media" src="assets/images/hero-render.webp" alt="Contemporary two-storey LDC Built home at dusk" fetchpriority="high">
   <div class="hero-overlay"></div>
   <div class="hero-grid-bg"></div>
 
@@ -487,7 +494,7 @@
       </h1>
       <div class="hero-grid">
         <p class="hero-intro">
-          LDC Built delivers considered residential homes across Brisbane and the Gold Coast. 23 design series and 77 floorplans, spanning narrow-lot first homes through to acreage and dual living — each built to the same standard.
+          LDC Built creates thoughtfully designed homes across Brisbane and the Gold Coast. From residential, acreage and double-storey homes to dual-living and fully custom designs, we create quality homes tailored to your block, lifestyle and future.
         </p>
         <div class="hero-ctas">
           <a href="previous-builds/index.html" class="btn-secondary btn-arrow">
@@ -538,36 +545,32 @@
   <div class="section-head">
     <div>
       <div class="section-kicker"><span class="num">02</span> How we build</div>
-      <h2 class="section-title">A simpler <span class="italic">four-step<span class="dot">.</span></span></h2>
+      <h2 class="section-title">Our three-step <span class="italic">process<span class="dot">.</span></span></h2>
     </div>
   </div>
   <div class="process-steps">
     <div class="step">
       <div>
+        <div class="step-numeral" aria-hidden="true">I</div>
         <div class="step-num">Step 01</div>
-        <h3 class="step-title">Consult</h3>
-        <p class="step-desc">An initial conversation about your block, your brief, and your budget. No pressure — just a clear starting point.</p>
+        <h3 class="step-title">Vision stage<span class="dot">.</span></h3>
+        <p class="step-desc">The Vision Stage is all about bringing your dream to life. It&rsquo;s where we listen carefully to your lifestyle needs, preferences and budget to create a clear picture of your perfect home. Together, we&rsquo;ll explore design ideas, consider your land&rsquo;s unique features and identify the must-haves that make your home truly yours. At the end of this stage, you&rsquo;ll receive a comprehensive, transparent quote that includes everything we&rsquo;ve discussed &mdash; completely clear, with no hidden surprises.</p>
       </div>
     </div>
     <div class="step">
       <div>
+        <div class="step-numeral" aria-hidden="true">II</div>
         <div class="step-num">Step 02</div>
-        <h3 class="step-title">Design</h3>
-        <p class="step-desc">Select from 77 floorplans across 23 series, or tailor one to your site. We handle the drawings, approvals, and engineering.</p>
+        <h3 class="step-title">Tentative stage<span class="dot">.</span></h3>
+        <p class="step-desc">Once you&rsquo;re happy with your design and quote, we move into the Tentative Stage. We carry out essential site tests &mdash; including soil analysis, contour surveys and environmental checks &mdash; to fully understand the unique conditions of your land. This lets us tailor materials, construction methods and engineering solutions to your block, so your new home is built safely, efficiently and in full compliance with all necessary regulations and standards.</p>
       </div>
     </div>
     <div class="step">
       <div>
+        <div class="step-numeral" aria-hidden="true">III</div>
         <div class="step-num">Step 03</div>
-        <h3 class="step-title">Contract</h3>
-        <p class="step-desc">Transparent fixed-price contracts with a detailed inclusions list. No surprises once the build begins.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div>
-        <div class="step-num">Step 04</div>
-        <h3 class="step-title">Build</h3>
-        <p class="step-desc">An average 18-week program with weekly site updates, a dedicated site supervisor, and a single point of contact.</p>
+        <h3 class="step-title">Construction<span class="dot">.</span></h3>
+        <p class="step-desc">This is where your vision comes to life, from expertly laid foundations to the final bespoke finishes. Our experienced builder and supervisor oversee every detail, ensuring each stage &mdash; from structural framing to premium fittings &mdash; is executed to the highest standard. You&rsquo;ll receive regular, personalised updates and can walk through your home as it progresses. On completion, a detailed final inspection ensures everything meets our quality benchmarks before we hand you the keys.</p>
       </div>
     </div>
   </div>
@@ -648,7 +651,7 @@
       <h2 class="cta-title">Your brief, our <span class="italic">build<span class="dot">.</span></span></h2>
     </div>
     <div class="cta-actions">
-      <a href="contact/index.html" class="btn-primary">Get a quote</a>
+      <a href="contact/index.html" class="btn-primary">Discuss your project</a>
       <a href="home-designs/index.html" class="btn-ghost">Browse designs</a>
     </div>
   </div>
@@ -668,6 +671,8 @@
         <div class="footer-col-title">Explore</div>
         <ul class="footer-links">
           <li><a href="home-designs/index.html">Home designs</a></li>
+          <li><a href="house-and-land/index.html">House &amp; land packages</a></li>
+          <li><a href="inclusions/index.html">Inclusions</a></li>
           <li><a href="previous-builds/index.html">Completed builds</a></li>
           <li><a href="about/index.html">About LDC</a></li>
           <li><a href="contact/index.html">Contact</a></li>
@@ -683,14 +688,14 @@
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-links">
-          <li><a href="tel:1300000000">1300 000 000</a></li>
+          <li><a href="tel:1300162378">1300 162 378</a></li>
           <li><a href="mailto:hello@ldcbuilt.com.au">hello@ldcbuilt.com.au</a></li>
           <li>Brisbane · Gold Coast</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 LDC Built · QBCC Licence No. 000000</span>
+      <span>© 2026 LDC Built · QBCC Licence No. 15552627</span>
       <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
     </div>
   </div>

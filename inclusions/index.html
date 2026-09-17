@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inclusions — LDC Built</title>
+<meta name="description" content="LDC Built Pinnacle Inclusions — the fixtures, appliances and building inclusions that come standard with every LDC Built home in Brisbane and the Gold Coast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+  .page-hero { max-width: var(--container); margin: 0 auto; padding: 72px var(--gutter) 48px; }
+  .page-hero .pill-tag { margin-bottom: 32px; }
+  .page-hero .page-title { margin-bottom: 48px; max-width: 1100px; }
+  .page-hero-grid {
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: end;
+    padding-top: 40px; border-top: 1px solid var(--soft);
+  }
+  .page-lead {
+    font-family: 'Instrument Sans', sans-serif; font-size: 24px; font-weight: 500;
+    letter-spacing: -0.02em; color: var(--charcoal); line-height: 1.35;
+  }
+  .page-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+  /* Jump links */
+  .inc-jump { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter) 24px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .inc-jump a {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--slate); text-decoration: none; padding: 8px 14px; border: 1px solid var(--soft);
+    border-radius: var(--radius-pill); background: var(--white); transition: all 0.25s ease;
+  }
+  .inc-jump a:hover { border-color: var(--charcoal); color: var(--charcoal); }
+
+  /* Fixture sections */
+  .inc-section { max-width: var(--container); margin: 0 auto; padding: 72px var(--gutter) 24px; scroll-margin-top: 90px; }
+  .inc-section .section-head { margin-bottom: 32px; }
+  .fixture-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .fixture {
+    background: var(--white); border: 1px solid var(--soft); border-radius: var(--radius-lg);
+    overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.3s ease;
+  }
+  .fixture:hover { border-color: var(--mid); }
+  .fixture-img { background: #fff; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; padding: 20px; border-bottom: 1px solid var(--soft); }
+  .fixture-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .fixture-body { padding: 20px 22px 24px; }
+  .fixture-type {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--mid); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .fixture-type::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red); }
+  .fixture-name { font-family: 'Instrument Sans', sans-serif; font-size: 17px; font-weight: 500; color: var(--charcoal); letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 6px; }
+  .fixture-code { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mid); letter-spacing: 0.04em; }
+
+  /* Spec schedule */
+  .spec-schedule { max-width: var(--container); margin: 0 auto; padding: 72px var(--gutter) 96px; scroll-margin-top: 90px; }
+  .spec-schedule .section-head { margin-bottom: 40px; }
+  .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .spec-card { background: var(--white); border: 1px solid var(--soft); border-radius: var(--radius-lg); padding: 28px; }
+  .spec-card h3 {
+    font-family: 'Instrument Sans', sans-serif; font-size: 22px; font-weight: 500; letter-spacing: -0.02em;
+    color: var(--charcoal); margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--soft);
+  }
+  .spec-card ul { list-style: none; }
+  .spec-card li { font-size: 14px; color: var(--slate); line-height: 1.45; padding: 7px 0; display: flex; gap: 12px; }
+  .spec-card li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 7px; }
+  .inc-note { font-size: 12px; color: var(--mid); margin-top: 24px; max-width: 720px; line-height: 1.55; }
+
+  /* CTA */
+  .cta-band { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter) 96px; }
+  .cta-inner {
+    background: var(--charcoal);
+    color: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 80px 64px;
+    display: grid; grid-template-columns: 1.5fr 1fr;
+    gap: 48px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-inner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+  .cta-content { position: relative; z-index: 2; }
+  .cta-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .cta-kicker::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--red);
+  }
+  .cta-title {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 500; letter-spacing: -0.03em;
+    line-height: 1.05; color: var(--white);
+  }
+  .cta-title .italic { font-style: italic; color: rgba(255,255,255,0.7); font-weight: 400; }
+  .cta-title .dot { color: var(--red); font-style: normal; }
+  .cta-actions { display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 2; }
+  .cta-actions .btn-primary {
+    background: var(--white); color: var(--charcoal); border-color: var(--white);
+    justify-content: center; width: 100%;
+  }
+  .cta-actions .btn-primary:hover { background: var(--red); color: var(--white); border-color: var(--red); }
+  .cta-actions .btn-ghost {
+    background: transparent; color: var(--white);
+    border-color: rgba(255,255,255,0.2);
+    justify-content: center; width: 100%;
+  }
+  .cta-actions .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+
+
+  @media (max-width: 900px) {
+    .page-hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .page-hero-actions { justify-content: flex-start; }
+    .cta-inner { grid-template-columns: 1fr; padding: 48px 32px; }
+    .fixture-grid { grid-template-columns: repeat(2, 1fr); }
+    .spec-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">LDC <span class="logo-sub">Built</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../home-designs/index.html">Designs</a></li>
+      <li><a href="../house-and-land/index.html">House &amp; Land</a></li>
+      <li><a href="../inclusions/index.html" class="active">Inclusions</a></li>
+      <li><a href="../previous-builds/index.html">Built</a></li>
+      <li><a href="../about/index.html">About</a></li>
+      <li><a href="../contact/index.html">Contact</a></li>
+    </ul>
+    <a href="../contact/index.html" class="nav-cta">Discuss your project</a>
+    <button class="mobile-toggle">Menu</button>
+  </div>
+</nav>
+<div class="mobile-drawer">
+  <a href="../index.html">Home</a>
+  <a href="../home-designs/index.html">Designs</a>
+  <a href="../house-and-land/index.html">House &amp; Land</a>
+  <a href="../inclusions/index.html">Inclusions</a>
+  <a href="../previous-builds/index.html">Built</a>
+  <a href="../about/index.html">About</a>
+  <a href="../contact/index.html">Contact</a>
+</div>
+
+<section class="page-hero">
+  <div class="pill-tag live">
+    Pinnacle inclusions
+    <span class="divider"></span>
+    Standard on every LDC home
+  </div>
+  <h1 class="page-title">
+    Your vision, <span class="italic">our pinnacle<span class="dot">.</span></span>
+  </h1>
+  <div class="page-hero-grid">
+    <p class="page-lead">Every LDC Built home comes with a considered, quality inclusions package as standard &mdash; from named fixtures and appliances through to the structural, site and compliance items that are too often left off the quote.</p>
+    <div class="page-hero-actions">
+      <a href="../assets/downloads/ldc-built-pinnacle-inclusions.pdf" class="btn-secondary btn-arrow" download>
+        Download brochure (PDF)
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="../contact/index.html" class="btn-primary">Discuss your project</a>
+    </div>
+  </div>
+</section>
+
+<nav class="inc-jump" aria-label="Inclusion categories">
+  <a href="#bathroom">Bathroom</a>
+  <a href="#ensuite">Ensuite</a>
+  <a href="#kitchen">Kitchen</a>
+  <a href="#laundry">Laundry &amp; butler&rsquo;s pantry</a>
+  <a href="#schedule">Full schedule</a>
+</nav>
+
+<section class="inc-section" id="bathroom">
+  <div class="section-head">
+    <div>
+      <div class="section-kicker"><span class="num">01</span> Fixtures &amp; appliances</div>
+      <h2 class="section-title">Bathroom<span class="dot">.</span></h2>
+    </div>
+  </div>
+  <div class="fixture-grid">
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/omega-basin.webp" alt="Omega Basin" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Basin</div>
+        <div class="fixture-name">Omega Basin</div>
+        <div class="fixture-code">FL4130-W</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/spin-tall-mixer.webp" alt="Spin Tall Mixer" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Mixer</div>
+        <div class="fixture-name">Spin Tall Mixer</div>
+        <div class="fixture-code">SP112-CH</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/element-shower.webp" alt="Element Gooseneck Shower Rail, Monsoon Rain Head, Modo Hand Shower" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Shower</div>
+        <div class="fixture-name">Element Gooseneck Shower Rail · Monsoon Rain Head · Modo Hand Shower</div>
+        <div class="fixture-code">ESR05-PS · MS300R-CH · MODO-CH</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/spin-towel-rail-single.webp" alt="Spin Single 750mm" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Towel rail</div>
+        <div class="fixture-name">Spin Single 750mm</div>
+        <div class="fixture-code">SP24-750-CH</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/eden-bath.webp" alt="Eden Back-to-Wall 1500mm" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Bath</div>
+        <div class="fixture-name">Eden Back-to-Wall 1500mm</div>
+        <div class="fixture-code">EDEN1500-W</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/spin-wall-mixer.webp" alt="Spin Wall Mount, Spin Wall Mixer" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Bath mixer</div>
+        <div class="fixture-name">Spin Wall Mount · Spin Wall Mixer</div>
+        <div class="fixture-code">SP092-220-CH · SP141-CH</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/spin-toilet-roll-holder.webp" alt="Spin" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Toilet roll holder</div>
+        <div class="fixture-name">Spin</div>
+        <div class="fixture-code">SP51-CH</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/lana-rimless-toilet.webp" alt="Lana Rimless" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Toilet</div>
+        <div class="fixture-name">Lana Rimless</div>
+        <div class="fixture-code">6002-R-W</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="inc-section" id="ensuite">
+  <div class="section-head">
+    <div>
+      <div class="section-kicker"><span class="num">02</span> Fixtures &amp; appliances</div>
+      <h2 class="section-title">Ensuite<span class="dot">.</span></h2>
+    </div>
+  </div>
+  <div class="fixture-grid">
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/omega-basin.webp" alt="Omega Basin" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Basin</div>
+        <div class="fixture-name">Omega Basin</div>
+        <div class="fixture-code">FL4130-W</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/spin-tall-mixer.webp" alt="Spin Tall Mixer" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Mixer</div>
+        <div class="fixture-name">Spin Tall Mixer</div>
+        <div class="fixture-code">SP112-CH</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/element-shower.webp" alt="Element Gooseneck Shower Rail, Monsoon Rain Head, Modo Hand Shower" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Shower</div>
+        <div class="fixture-name">Element Gooseneck Shower Rail · Monsoon Rain Head · Modo Hand Shower</div>
+        <div class="fixture-code">ESR05-PS · MS300R-CH · MODO-CH</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/spin-towel-rail-double.webp" alt="Spin Double 750mm" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Towel rail</div>
+        <div class="fixture-name">Spin Double 750mm</div>
+        <div class="fixture-code">SP48-750-CH</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/spin-toilet-roll-holder.webp" alt="Spin" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Toilet roll holder</div>
+        <div class="fixture-name">Spin</div>
+        <div class="fixture-code">SP51-CH</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/lana-rimless-toilet.webp" alt="Lana Rimless" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Toilet</div>
+        <div class="fixture-name">Lana Rimless</div>
+        <div class="fixture-code">6002-R-W</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="inc-section" id="kitchen">
+  <div class="section-head">
+    <div>
+      <div class="section-kicker"><span class="num">03</span> Fixtures &amp; appliances</div>
+      <h2 class="section-title">Kitchen<span class="dot">.</span></h2>
+    </div>
+  </div>
+  <div class="fixture-grid">
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/burazzo-double-sink.webp" alt="Burazzo Double Undermount" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Sink</div>
+        <div class="fixture-name">Burazzo Double Undermount</div>
+        <div class="fixture-code">BU754522D</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/spin-gooseneck-mixer.webp" alt="Spin Gooseneck Mixer" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Mixer</div>
+        <div class="fixture-name">Spin Gooseneck Mixer</div>
+        <div class="fixture-code">SP122-CH</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/westinghouse-cooker.webp" alt="Westinghouse 900mm Freestanding" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Cooker</div>
+        <div class="fixture-name">Westinghouse 900mm Freestanding</div>
+        <div class="fixture-code">WFE9515SD</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/westinghouse-dishwasher.webp" alt="Westinghouse 600mm" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Dishwasher</div>
+        <div class="fixture-name">Westinghouse 600mm</div>
+        <div class="fixture-code">WSF6602XA</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/rangehood-integrated.webp" alt="Integrated" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Rangehood</div>
+        <div class="fixture-name">Integrated</div>
+        <div class="fixture-code">WIR815SC</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/rangehood-canopy.webp" alt="Canopy" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Rangehood</div>
+        <div class="fixture-name">Canopy</div>
+        <div class="fixture-code">WRC902SD</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="inc-section" id="laundry">
+  <div class="section-head">
+    <div>
+      <div class="section-kicker"><span class="num">04</span> Fixtures &amp; appliances</div>
+      <h2 class="section-title">Laundry &amp; butler&rsquo;s pantry<span class="dot">.</span></h2>
+    </div>
+  </div>
+  <div class="fixture-grid">
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/burazzo-single-sink.webp" alt="Burazzo Single Undermount" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Sink</div>
+        <div class="fixture-name">Burazzo Single Undermount</div>
+        <div class="fixture-code">BU454520S</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <div class="fixture-img"><img src="../assets/inclusions/spin-gooseneck-mixer.webp" alt="Spin Gooseneck Mixer" loading="lazy" width="400" height="400"></div>
+      <div class="fixture-body">
+        <div class="fixture-type">Mixer</div>
+        <div class="fixture-name">Spin Gooseneck Mixer</div>
+        <div class="fixture-code">SP122-CH</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spec-schedule" id="schedule">
+  <div class="section-head">
+    <div>
+      <div class="section-kicker"><span class="num">05</span> Full schedule</div>
+      <h2 class="section-title">Everything <span class="italic">included<span class="dot">.</span></span></h2>
+    </div>
+  </div>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <h3>General</h3>
+      <ul>
+        <li>Building fees</li>
+        <li>Building levies</li>
+        <li>QBCC insurance</li>
+        <li>Energy efficiency report</li>
+        <li>Internal builder clean</li>
+        <li>External builder clean</li>
+        <li>Colour selection appointment</li>
+        <li>Independent handover inspection</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Site</h3>
+      <ul>
+        <li>Soil test</li>
+        <li>Wind rating</li>
+        <li>500mm cut and fill</li>
+        <li>M-class soil classification</li>
+        <li>Contour report</li>
+        <li>Council pre-check</li>
+        <li>Piering (excluding &lsquo;P&rsquo; sites)</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Structural</h3>
+      <ul>
+        <li>Pre-fabricated timber frame</li>
+        <li>Wind rating N3</li>
+        <li>Termite treatment to Australian Standard 3660.1</li>
+        <li>Concrete slab to home, alfresco and porch</li>
+        <li>Biax pods</li>
+        <li>2700mm ceiling height</li>
+        <li>Waterproofing to all wet areas</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>External</h3>
+      <ul>
+        <li>Facade as per plan</li>
+        <li>Colorbond roof, fascia and gutter</li>
+        <li>TV antenna</li>
+        <li>Wall-mounted clothesline</li>
+        <li>External garden taps &times; 2</li>
+        <li>Hot water system</li>
+        <li>60m&sup2; broom finished driveway</li>
+        <li>450&times;450 tiled porch</li>
+        <li>Broom finished alfresco</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Windows</h3>
+      <ul>
+        <li>Wind rating N3</li>
+        <li>Aluminium windows</li>
+        <li>Aluminium sliding doors</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>External doors</h3>
+      <ul>
+        <li>Paint grade front door (builder&rsquo;s range)</li>
+        <li>Paint grade external door (builder&rsquo;s range)</li>
+        <li>2040mm height</li>
+        <li>Pine entry door frame</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Locks</h3>
+      <ul>
+        <li>Front entry: Gainsborough (builder&rsquo;s range)</li>
+        <li>External: knobset (builder&rsquo;s range)</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Garage</h3>
+      <ul>
+        <li>Electric panel lift door (builder&rsquo;s range)</li>
+        <li>Handheld remotes &times; 2</li>
+        <li>Wall-mounted remote &times; 1</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Internal</h3>
+      <ul>
+        <li>2040mm flush panel doors</li>
+        <li>Gainsborough door handles (builder&rsquo;s choice)</li>
+        <li>10mm plasterboard to internal walls and ceilings</li>
+        <li>90mm cove cornice (excluding porch and alfresco)</li>
+        <li>66&times;11 primed pine skirting</li>
+        <li>42&times;11 primed pine architrave</li>
+        <li>Vinyl floorcovering (builder&rsquo;s range)</li>
+        <li>Carpet floorcovering (builder&rsquo;s range)</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Kitchen</h3>
+      <ul>
+        <li>20mm stone benchtop (builder&rsquo;s range)</li>
+        <li>300&times;600 or 600&times;600 tiled splashback (builder&rsquo;s range)</li>
+        <li>Polytec cabinetry (builder&rsquo;s range)</li>
+        <li>Soft close cabinetry</li>
+        <li>Handles (builder&rsquo;s range)</li>
+        <li>Undermount kitchen sink</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Bathroom &amp; ensuite</h3>
+      <ul>
+        <li>20mm stone benchtop (builder&rsquo;s range)</li>
+        <li>Back-to-wall toilet</li>
+        <li>Tapware (builder&rsquo;s range)</li>
+        <li>Floor-mounted vanity</li>
+        <li>Above-counter basin with overflow</li>
+        <li>600&times;600 floor and wall tiles</li>
+        <li>Shower with ledge wall</li>
+        <li>Semi-frameless shower screen, clear glazed</li>
+        <li>Strip drains</li>
+        <li>Frameless mirrors</li>
+        <li>Floating vanities</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Laundry</h3>
+      <ul>
+        <li>20mm stone benchtop (builder&rsquo;s range)</li>
+        <li>Tapware (builder&rsquo;s range)</li>
+        <li>300&times;600 or 600&times;600 splashback</li>
+        <li>600&times;600 floor tiles</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Electrical</h3>
+      <ul>
+        <li>Underground 16mm single-phase power (10lm allowance)</li>
+        <li>NBN (10lm allowance)</li>
+        <li>Internal power points as per plan</li>
+        <li>LED downlights</li>
+        <li>TV points as per plan</li>
+        <li>Data points as per plan</li>
+        <li>Earth leakage circuit breakers &times; 2</li>
+        <li>Smoke detectors</li>
+        <li>Exhaust fans to wet areas</li>
+        <li>Ceiling fans in all habitable areas</li>
+      </ul>
+    </div>
+    <div class="spec-card">
+      <h3>Plumbing</h3>
+      <ul>
+        <li>Sewer line (10lm allowance)</li>
+        <li>Stormwater line (10lm allowance)</li>
+        <li>Water mains (10lm allowance)</li>
+        <li>Polyethylene internal water lines</li>
+        <li>150mm gutters</li>
+        <li>Downpipes</li>
+      </ul>
+    </div>
+  </div>
+  <p class="inc-note">Photos for illustration only. Inclusions may vary by design, site and region, and are confirmed in your contract. Builder&rsquo;s range items are selected at your colour selection appointment.</p>
+</section>
+
+<section class="cta-band">
+  <div class="cta-inner">
+    <div class="cta-content">
+      <div class="cta-kicker">Ready to start?</div>
+      <h2 class="cta-title">Let&rsquo;s talk about <span class="italic">your build<span class="dot">.</span></span></h2>
+    </div>
+    <div class="cta-actions">
+      <a href="../contact/index.html" class="btn-primary">Discuss your project</a>
+      <a href="../home-designs/index.html" class="btn-ghost">Browse designs</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-grid-bg"></div>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo">LDC <span class="logo-sub">Built</span></a>
+        <p class="footer-tagline">
+          Residential homes, engineered for <span class="italic">everyday<span class="dot">.</span></span>
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="../home-designs/index.html">Home designs</a></li>
+          <li><a href="../house-and-land/index.html">House &amp; land packages</a></li>
+          <li><a href="../inclusions/index.html">Inclusions</a></li>
+          <li><a href="../previous-builds/index.html">Completed builds</a></li>
+          <li><a href="../about/index.html">About LDC</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Regions</div>
+        <ul class="footer-links">
+          <li><a href="#">Brisbane</a></li>
+          <li><a href="#">Gold Coast</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:1300162378">1300 162 378</a></li>
+          <li><a href="mailto:hello@ldcbuilt.com.au">hello@ldcbuilt.com.au</a></li>
+          <li>Brisbane · Gold Coast</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LDC Built · QBCC Licence No. 15552627</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
