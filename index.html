@@ -123,7 +123,7 @@
     max-width: var(--container);
     margin: 0 auto;
     padding: 0 var(--gutter) 72px;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
     border-top: 1px solid var(--soft);
     border-bottom: 1px solid var(--soft);
   }
@@ -432,9 +432,8 @@
   }
 
   @media (max-width: 900px) {
-    .stats-bar { grid-template-columns: repeat(2, 1fr); }
-    .stat:nth-child(2) { border-right: none; }
-    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--soft); }
+    .stat { padding: 24px 16px; }
+    .stat-value { font-size: 36px; }
     .hero { min-height: 75vh; }
     .hero-inner { padding-top: 48px; padding-bottom: 32px; }
     body.has-hero-video .hero-inner { padding-top: calc(48px + var(--nav-h)); }
@@ -516,10 +515,6 @@
   <div class="stat">
     <div class="stat-label">Regions</div>
     <div class="stat-value">02</div>
-  </div>
-  <div class="stat">
-    <div class="stat-label">Starting from</div>
-    <div class="stat-value">$329k</div>
   </div>
   <div class="stat">
     <div class="stat-label">Avg. build time</div>
