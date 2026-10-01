@@ -659,3 +659,103 @@ footer.site-footer {
   .variant-layout { grid-template-columns: 1fr; gap: 24px; }
   .variants { padding-bottom: 64px; }
 }
+
+/* ============ FACADE SLIDER (design landing pages) ============ */
+.facade-slider { touch-action: pan-y; user-select: none; }
+.facade-slider .fs-slide {
+  position: absolute; inset: 0; margin: 0;
+  opacity: 0; transition: opacity 0.6s var(--ease);
+}
+.facade-slider .fs-slide.is-active { opacity: 1; }
+.facade-slider .fs-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.facade-slider .showcase-label {
+  background: rgba(26, 31, 36, 0.45);
+  backdrop-filter: blur(8px);
+  padding: 12px 18px; border-radius: var(--radius);
+  z-index: 3;
+}
+.fs-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 3; width: 52px; height: 52px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(26, 31, 36, 0.4); backdrop-filter: blur(8px);
+  color: var(--white); cursor: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.fs-nav:hover { background: var(--red); border-color: var(--red); }
+.fs-nav svg { width: 20px; height: 20px; }
+.fs-prev { left: 24px; }
+.fs-next { right: 24px; }
+.fs-dots {
+  position: absolute; bottom: 36px; right: 32px; z-index: 3;
+  display: flex; gap: 8px;
+}
+.fs-dot {
+  width: 8px; height: 8px; border-radius: 50%; padding: 0;
+  border: none; background: rgba(255,255,255,0.45); cursor: none;
+  transition: all 0.25s ease;
+}
+.fs-dot.is-active { background: var(--red); width: 24px; border-radius: 4px; }
+.facade-card[data-facade-index] { cursor: none; }
+.facade-card.is-current { border-color: var(--red); box-shadow: 0 0 0 1px var(--red); }
+@media (hover: none) { .fs-nav, .fs-dot, .facade-card[data-facade-index] { cursor: pointer; } }
+@media (max-width: 700px) {
+  .facade-slider .fs-nav { display: none; }
+  .plan-lightbox .fs-nav { width: 40px; height: 40px; }
+  .fs-dots { bottom: 16px; right: 16px; }
+  .facade-slider .showcase-label { bottom: 16px; left: 16px; padding: 8px 12px; }
+  .facade-slider .showcase-label-main { font-size: 18px; }
+}
+
+/* ============ FLOOR PLAN LIGHTBOX ============ */
+.plan-figure { position: relative; }
+.plan-figure img { max-height: 720px; object-fit: contain; }
+.plan-figure img[data-zoomable] { cursor: zoom-in; }
+
+.plan-zoom-hint {
+  position: absolute; top: 16px; right: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--slate); background: var(--off-white);
+  border: 1px solid var(--soft); border-radius: var(--radius-pill);
+  padding: 6px 12px; display: inline-flex; align-items: center; gap: 6px;
+  pointer-events: none;
+}
+.plan-zoom-hint svg { width: 12px; height: 12px; }
+.plan-lightbox {
+  position: fixed; inset: 0; z-index: 9000;
+  background: var(--charcoal);
+  display: none; flex-direction: column;
+  padding: 24px;
+}
+.plan-lightbox.open { display: flex; }
+.plan-lightbox-top {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  color: var(--white); margin-bottom: 16px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+.plan-lightbox-count { color: rgba(255,255,255,0.55); margin-left: 12px; }
+.plan-lightbox-stage {
+  flex: 1; min-height: 0; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  touch-action: pan-y;
+}
+.plan-lightbox-stage img {
+  max-width: 100%; max-height: 100%; object-fit: contain;
+  background: var(--white); border-radius: var(--radius); padding: 16px;
+}
+.plan-lightbox .fs-nav { top: 50%; }
+.plan-lightbox .fs-prev { left: 8px; }
+.plan-lightbox .fs-next { right: 8px; }
+.plan-lightbox-close {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.35); background: transparent;
+  color: var(--white); cursor: none;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.plan-lightbox-close:hover { background: var(--red); border-color: var(--red); }
+.plan-lightbox-close svg { width: 18px; height: 18px; }
+@media (hover: none) { .plan-lightbox-close { cursor: pointer; } }
+body.lightbox-open { overflow: hidden; }

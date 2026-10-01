@@ -189,22 +189,22 @@ var LDC_DESIGNS = [
     "minLotWidthM": 16.5,
     "facades": [
       {
-        "name": "Standard",
-        "slug": "standard",
-        "src": "assets/designs/kensington/facades/standard.webp"
+        "name": "Traditional",
+        "slug": "traditional",
+        "src": "assets/designs/kensington/facades/traditional.webp"
       },
       {
-        "name": "Knockwood",
-        "slug": "knockwood",
-        "src": "assets/designs/kensington/facades/knockwood.webp"
+        "name": "Heritage",
+        "slug": "heritage",
+        "src": "assets/designs/kensington/facades/heritage.webp"
       },
       {
-        "name": "Rock",
-        "slug": "rock",
-        "src": "assets/designs/kensington/facades/rock.webp"
+        "name": "Stoneleigh",
+        "slug": "stoneleigh",
+        "src": "assets/designs/kensington/facades/stoneleigh.webp"
       }
     ],
-    "heroImage": "assets/designs/kensington/facades/standard.webp",
+    "heroImage": "assets/designs/kensington/facades/traditional.webp",
     "heroType": "render",
     "filters": {
       "collection": "single-storey",
@@ -472,12 +472,27 @@ var LDC_DESIGNS = [
     "minLotWidthM": 14.0,
     "facades": [
       {
-        "name": "Rock",
-        "slug": "rock",
-        "src": "assets/designs/oakely/facades/rock.webp"
+        "name": "Traditional Estate",
+        "slug": "traditional-estate",
+        "src": "assets/designs/oakely/facades/traditional-estate.webp"
+      },
+      {
+        "name": "Contemporary",
+        "slug": "contemporary",
+        "src": "assets/designs/oakely/facades/contemporary.webp"
+      },
+      {
+        "name": "Heritage",
+        "slug": "heritage",
+        "src": "assets/designs/oakely/facades/heritage.webp"
+      },
+      {
+        "name": "Stoneleigh",
+        "slug": "stoneleigh",
+        "src": "assets/designs/oakely/facades/stoneleigh.webp"
       }
     ],
-    "heroImage": "assets/designs/oakely/facades/rock.webp",
+    "heroImage": "assets/designs/oakely/facades/traditional-estate.webp",
     "heroType": "render",
     "filters": {
       "collection": "single-storey",
@@ -792,22 +807,22 @@ var LDC_DESIGNS = [
     "minLotWidthM": 15.5,
     "facades": [
       {
-        "name": "Standard",
-        "slug": "standard",
-        "src": "assets/designs/middleton/facades/standard.webp"
+        "name": "Traditional",
+        "slug": "traditional",
+        "src": "assets/designs/middleton/facades/traditional.webp"
       },
       {
-        "name": "Knockwood",
-        "slug": "knockwood",
-        "src": "assets/designs/middleton/facades/knockwood.webp"
+        "name": "Heritage",
+        "slug": "heritage",
+        "src": "assets/designs/middleton/facades/heritage.webp"
       },
       {
-        "name": "Rock",
-        "slug": "rock",
-        "src": "assets/designs/middleton/facades/rock.webp"
+        "name": "Stoneleigh Cottage",
+        "slug": "stoneleigh-cottage",
+        "src": "assets/designs/middleton/facades/stoneleigh-cottage.webp"
       }
     ],
-    "heroImage": "assets/designs/middleton/facades/standard.webp",
+    "heroImage": "assets/designs/middleton/facades/traditional.webp",
     "heroType": "render",
     "filters": {
       "collection": "single-storey",
@@ -1079,22 +1094,22 @@ var LDC_DESIGNS = [
     "minLotWidthM": 16.0,
     "facades": [
       {
-        "name": "Standard",
-        "slug": "standard",
-        "src": "assets/designs/claremont/facades/standard.webp"
+        "name": "Traditional",
+        "slug": "traditional",
+        "src": "assets/designs/claremont/facades/traditional.webp"
       },
       {
-        "name": "Knockwood",
-        "slug": "knockwood",
-        "src": "assets/designs/claremont/facades/knockwood.webp"
+        "name": "Contemporary",
+        "slug": "contemporary",
+        "src": "assets/designs/claremont/facades/contemporary.webp"
       },
       {
-        "name": "Rock",
-        "slug": "rock",
-        "src": "assets/designs/claremont/facades/rock.webp"
+        "name": "Stoneleigh",
+        "slug": "stoneleigh",
+        "src": "assets/designs/claremont/facades/stoneleigh.webp"
       }
     ],
-    "heroImage": "assets/designs/claremont/facades/standard.webp",
+    "heroImage": "assets/designs/claremont/facades/traditional.webp",
     "heroType": "render",
     "filters": {
       "collection": "single-storey",
@@ -1369,22 +1384,22 @@ var LDC_DESIGNS = [
     "minLotWidthM": 13.0,
     "facades": [
       {
-        "name": "Standard",
-        "slug": "standard",
-        "src": "assets/designs/everly/facades/standard.webp"
+        "name": "Traditional",
+        "slug": "traditional",
+        "src": "assets/designs/everly/facades/traditional.webp"
+      },
+      {
+        "name": "Heritage",
+        "slug": "heritage",
+        "src": "assets/designs/everly/facades/heritage.webp"
       },
       {
         "name": "Cottage",
         "slug": "cottage",
         "src": "assets/designs/everly/facades/cottage.webp"
-      },
-      {
-        "name": "Urban",
-        "slug": "urban",
-        "src": "assets/designs/everly/facades/urban.webp"
       }
     ],
-    "heroImage": "assets/designs/everly/facades/standard.webp",
+    "heroImage": "assets/designs/everly/facades/traditional.webp",
     "heroType": "render",
     "filters": {
       "collection": "single-storey",
@@ -1488,7 +1503,7 @@ var LDC_DESIGNS = [
         ],
         "planPdf": "assets/plans/everly/everly-205-concept-set.pdf",
         "planImages": [
-          "assets/designs/everly/everly-205-floor.webp"
+          "assets/designs/everly/everly-205-3bed-floor.webp"
         ],
         "view3d": "assets/designs/everly/everly-205-3d.webp"
       },
@@ -1645,22 +1660,22 @@ var LDC_DESIGNS = [
     "minLotWidthM": 8.0,
     "facades": [
       {
-        "name": "Standard",
-        "slug": "standard",
-        "src": "assets/designs/ashford/facades/standard.webp"
+        "name": "Traditional",
+        "slug": "traditional",
+        "src": "assets/designs/ashford/facades/traditional.webp"
       },
       {
-        "name": "Knockwood",
-        "slug": "knockwood",
-        "src": "assets/designs/ashford/facades/knockwood.webp"
+        "name": "Heritage",
+        "slug": "heritage",
+        "src": "assets/designs/ashford/facades/heritage.webp"
       },
       {
-        "name": "Rock",
-        "slug": "rock",
-        "src": "assets/designs/ashford/facades/rock.webp"
+        "name": "Stoneleigh",
+        "slug": "stoneleigh",
+        "src": "assets/designs/ashford/facades/stoneleigh.webp"
       }
     ],
-    "heroImage": "assets/designs/ashford/facades/standard.webp",
+    "heroImage": "assets/designs/ashford/facades/traditional.webp",
     "heroType": "render",
     "filters": {
       "collection": "single-storey",
@@ -1896,9 +1911,9 @@ var LDC_DESIGNS = [
     ]
   },
   {
-    "slug": "brighton",
-    "name": "Brighton",
-    "nameProposed": true,
+    "slug": "wentworth",
+    "name": "Wentworth",
+    "nameProposed": false,
     "seriesCode": "SERIES 4 DSA",
     "collection": "double-storey",
     "collectionLabel": "Double Storey",
@@ -1913,9 +1928,30 @@ var LDC_DESIGNS = [
     "carsMin": 2,
     "carsMax": 2,
     "minLotWidthM": 10.5,
-    "facades": [],
-    "heroImage": "assets/designs/brighton/brighton-251-3d.webp",
-    "heroType": "3d-view",
+    "facades": [
+      {
+        "name": "Traditional Estate",
+        "slug": "traditional-estate",
+        "src": "assets/designs/wentworth/facades/traditional-estate.webp"
+      },
+      {
+        "name": "Contemporary",
+        "slug": "contemporary",
+        "src": "assets/designs/wentworth/facades/contemporary.webp"
+      },
+      {
+        "name": "Cottage",
+        "slug": "cottage",
+        "src": "assets/designs/wentworth/facades/cottage.webp"
+      },
+      {
+        "name": "Manor",
+        "slug": "manor",
+        "src": "assets/designs/wentworth/facades/manor.webp"
+      }
+    ],
+    "heroImage": "assets/designs/wentworth/facades/traditional-estate.webp",
+    "heroType": "render",
     "filters": {
       "collection": "double-storey",
       "storeys": [
@@ -1941,8 +1977,8 @@ var LDC_DESIGNS = [
     "variants": [
       {
         "code": "SERIES 4 DSA1",
-        "slug": "brighton-251",
-        "name": "Brighton 251",
+        "slug": "wentworth-251",
+        "name": "Wentworth 251",
         "totalM2": 250.6,
         "livingM2": 189.4,
         "garageM2": 43.1,
@@ -1980,17 +2016,17 @@ var LDC_DESIGNS = [
           "WIP",
           "WIR"
         ],
-        "planPdf": "assets/plans/brighton/brighton-251-concept-set.pdf",
+        "planPdf": "assets/plans/wentworth/wentworth-251-concept-set.pdf",
         "planImages": [
-          "assets/designs/brighton/brighton-251-lower.webp",
-          "assets/designs/brighton/brighton-251-upper.webp"
+          "assets/designs/wentworth/wentworth-251-lower.webp",
+          "assets/designs/wentworth/wentworth-251-upper.webp"
         ],
-        "view3d": "assets/designs/brighton/brighton-251-3d.webp"
+        "view3d": "assets/designs/wentworth/wentworth-251-3d.webp"
       },
       {
         "code": "SERIES 4 DSA3",
-        "slug": "brighton-256",
-        "name": "Brighton 256",
+        "slug": "wentworth-256",
+        "name": "Wentworth 256",
         "totalM2": 256.3,
         "livingM2": 193.5,
         "garageM2": 43.1,
@@ -2027,17 +2063,17 @@ var LDC_DESIGNS = [
           "WIP",
           "WIR"
         ],
-        "planPdf": "assets/plans/brighton/brighton-256-concept-set.pdf",
+        "planPdf": "assets/plans/wentworth/wentworth-256-concept-set.pdf",
         "planImages": [
-          "assets/designs/brighton/brighton-256-lower.webp",
-          "assets/designs/brighton/brighton-256-upper.webp"
+          "assets/designs/wentworth/wentworth-256-lower.webp",
+          "assets/designs/wentworth/wentworth-256-upper.webp"
         ],
-        "view3d": "assets/designs/brighton/brighton-256-3d.webp"
+        "view3d": "assets/designs/wentworth/wentworth-256-3d.webp"
       },
       {
         "code": "SERIES 4 DSA2",
-        "slug": "brighton-283",
-        "name": "Brighton 283",
+        "slug": "wentworth-283",
+        "name": "Wentworth 283",
         "totalM2": 282.6,
         "livingM2": 196.6,
         "garageM2": 43.1,
@@ -2075,12 +2111,12 @@ var LDC_DESIGNS = [
           "VOID",
           "WIR"
         ],
-        "planPdf": "assets/plans/brighton/brighton-283-concept-set.pdf",
+        "planPdf": "assets/plans/wentworth/wentworth-283-concept-set.pdf",
         "planImages": [
-          "assets/designs/brighton/brighton-283-lower.webp",
-          "assets/designs/brighton/brighton-283-upper.webp"
+          "assets/designs/wentworth/wentworth-283-lower.webp",
+          "assets/designs/wentworth/wentworth-283-upper.webp"
         ],
-        "view3d": "assets/designs/brighton/brighton-283-3d.webp"
+        "view3d": "assets/designs/wentworth/wentworth-283-3d.webp"
       }
     ]
   },
@@ -2178,9 +2214,9 @@ var LDC_DESIGNS = [
     ]
   },
   {
-    "slug": "wentworth",
-    "name": "Wentworth",
-    "nameProposed": true,
+    "slug": "chatsworth",
+    "name": "Chatsworth",
+    "nameProposed": false,
     "seriesCode": "SERIES 54 ADJ",
     "collection": "double-storey",
     "collectionLabel": "Double Storey",
@@ -2195,9 +2231,20 @@ var LDC_DESIGNS = [
     "carsMin": 2,
     "carsMax": 2,
     "minLotWidthM": 14.5,
-    "facades": [],
-    "heroImage": "assets/designs/wentworth/wentworth-324-3d.webp",
-    "heroType": "3d-view",
+    "facades": [
+      {
+        "name": "Traditional Estate",
+        "slug": "traditional-estate",
+        "src": "assets/designs/chatsworth/facades/traditional-estate.webp"
+      },
+      {
+        "name": "Manor",
+        "slug": "manor",
+        "src": "assets/designs/chatsworth/facades/manor.webp"
+      }
+    ],
+    "heroImage": "assets/designs/chatsworth/facades/traditional-estate.webp",
+    "heroType": "render",
     "filters": {
       "collection": "double-storey",
       "storeys": [
@@ -2225,8 +2272,8 @@ var LDC_DESIGNS = [
     "variants": [
       {
         "code": "SERIES 54 ADJ1",
-        "slug": "wentworth-324",
-        "name": "Wentworth 324",
+        "slug": "chatsworth-324",
+        "name": "Chatsworth 324",
         "totalM2": 323.9,
         "livingM2": 246.1,
         "garageM2": 39.2,
@@ -2262,17 +2309,17 @@ var LDC_DESIGNS = [
           "WIP",
           "WIR"
         ],
-        "planPdf": "assets/plans/wentworth/wentworth-324-concept-set.pdf",
+        "planPdf": "assets/plans/chatsworth/chatsworth-324-concept-set.pdf",
         "planImages": [
-          "assets/designs/wentworth/wentworth-324-lower.webp",
-          "assets/designs/wentworth/wentworth-324-upper.webp"
+          "assets/designs/chatsworth/chatsworth-324-lower.webp",
+          "assets/designs/chatsworth/chatsworth-324-upper.webp"
         ],
-        "view3d": "assets/designs/wentworth/wentworth-324-3d.webp"
+        "view3d": "assets/designs/chatsworth/chatsworth-324-3d.webp"
       },
       {
         "code": "SERIES 54 ADJ2",
-        "slug": "wentworth-360",
-        "name": "Wentworth 360",
+        "slug": "chatsworth-360",
+        "name": "Chatsworth 360",
         "totalM2": 359.9,
         "livingM2": 281.6,
         "garageM2": 39.4,
@@ -2309,17 +2356,17 @@ var LDC_DESIGNS = [
           "WIP",
           "WIR"
         ],
-        "planPdf": "assets/plans/wentworth/wentworth-360-concept-set.pdf",
+        "planPdf": "assets/plans/chatsworth/chatsworth-360-concept-set.pdf",
         "planImages": [
-          "assets/designs/wentworth/wentworth-360-lower.webp",
-          "assets/designs/wentworth/wentworth-360-upper.webp"
+          "assets/designs/chatsworth/chatsworth-360-lower.webp",
+          "assets/designs/chatsworth/chatsworth-360-upper.webp"
         ],
-        "view3d": "assets/designs/wentworth/wentworth-360-3d.webp"
+        "view3d": "assets/designs/chatsworth/chatsworth-360-3d.webp"
       },
       {
         "code": "SERIES 54 ADJ3",
-        "slug": "wentworth-363",
-        "name": "Wentworth 363",
+        "slug": "chatsworth-363",
+        "name": "Chatsworth 363",
         "totalM2": 363.3,
         "livingM2": 287.9,
         "garageM2": 39.3,
@@ -2355,19 +2402,19 @@ var LDC_DESIGNS = [
           "WIP",
           "WIR"
         ],
-        "planPdf": "assets/plans/wentworth/wentworth-363-concept-set.pdf",
+        "planPdf": "assets/plans/chatsworth/chatsworth-363-concept-set.pdf",
         "planImages": [
-          "assets/designs/wentworth/wentworth-363-lower.webp",
-          "assets/designs/wentworth/wentworth-363-upper.webp"
+          "assets/designs/chatsworth/chatsworth-363-lower.webp",
+          "assets/designs/chatsworth/chatsworth-363-upper.webp"
         ],
-        "view3d": "assets/designs/wentworth/wentworth-363-3d.webp"
+        "view3d": "assets/designs/chatsworth/chatsworth-363-3d.webp"
       }
     ]
   },
   {
-    "slug": "carlisle",
-    "name": "Carlisle",
-    "nameProposed": true,
+    "slug": "highgrove",
+    "name": "Highgrove",
+    "nameProposed": false,
     "seriesCode": "SERIES 55 ADK",
     "collection": "double-storey",
     "collectionLabel": "Double Storey",
@@ -2382,9 +2429,25 @@ var LDC_DESIGNS = [
     "carsMin": 2,
     "carsMax": 2,
     "minLotWidthM": 13.5,
-    "facades": [],
-    "heroImage": "assets/designs/carlisle/carlisle-390-3d.webp",
-    "heroType": "3d-view",
+    "facades": [
+      {
+        "name": "Traditional Estate",
+        "slug": "traditional-estate",
+        "src": "assets/designs/highgrove/facades/traditional-estate.webp"
+      },
+      {
+        "name": "Heritage",
+        "slug": "heritage",
+        "src": "assets/designs/highgrove/facades/heritage.webp"
+      },
+      {
+        "name": "Manor",
+        "slug": "manor",
+        "src": "assets/designs/highgrove/facades/manor.webp"
+      }
+    ],
+    "heroImage": "assets/designs/highgrove/facades/traditional-estate.webp",
+    "heroType": "render",
     "filters": {
       "collection": "double-storey",
       "storeys": [
@@ -2409,8 +2472,8 @@ var LDC_DESIGNS = [
     "variants": [
       {
         "code": "SERIES 55 ADK1",
-        "slug": "carlisle-390",
-        "name": "Carlisle 390",
+        "slug": "highgrove-390",
+        "name": "Highgrove 390",
         "totalM2": 390.3,
         "livingM2": 309.1,
         "garageM2": 34.0,
@@ -2448,12 +2511,12 @@ var LDC_DESIGNS = [
           "WIP",
           "WIR"
         ],
-        "planPdf": "assets/plans/carlisle/carlisle-390-concept-set.pdf",
+        "planPdf": "assets/plans/highgrove/highgrove-390-concept-set.pdf",
         "planImages": [
-          "assets/designs/carlisle/carlisle-390-lower.webp",
-          "assets/designs/carlisle/carlisle-390-upper.webp"
+          "assets/designs/highgrove/highgrove-390-lower.webp",
+          "assets/designs/highgrove/highgrove-390-upper.webp"
         ],
-        "view3d": "assets/designs/carlisle/carlisle-390-3d.webp"
+        "view3d": "assets/designs/highgrove/highgrove-390-3d.webp"
       }
     ]
   },
@@ -3001,9 +3064,9 @@ var LDC_DESIGNS = [
     ]
   },
   {
-    "slug": "harrington",
-    "name": "Harrington",
-    "nameProposed": true,
+    "slug": "hadley",
+    "name": "Hadley",
+    "nameProposed": false,
     "seriesCode": "SERIES 18 ASP",
     "collection": "acreage",
     "collectionLabel": "Acreage",
@@ -3018,9 +3081,20 @@ var LDC_DESIGNS = [
     "carsMin": 2,
     "carsMax": 2,
     "minLotWidthM": 18.5,
-    "facades": [],
-    "heroImage": "assets/designs/harrington/harrington-214-3d.webp",
-    "heroType": "3d-view",
+    "facades": [
+      {
+        "name": "Contemporary",
+        "slug": "contemporary",
+        "src": "assets/designs/hadley/facades/contemporary.webp"
+      },
+      {
+        "name": "Cottage",
+        "slug": "cottage",
+        "src": "assets/designs/hadley/facades/cottage.webp"
+      }
+    ],
+    "heroImage": "assets/designs/hadley/facades/contemporary.webp",
+    "heroType": "render",
     "filters": {
       "collection": "acreage",
       "storeys": [
@@ -3050,8 +3124,8 @@ var LDC_DESIGNS = [
     "variants": [
       {
         "code": "SERIES 18 ASP1",
-        "slug": "harrington-214",
-        "name": "Harrington 214",
+        "slug": "hadley-214",
+        "name": "Hadley 214",
         "totalM2": 213.6,
         "livingM2": 150.0,
         "garageM2": 39.3,
@@ -3084,16 +3158,16 @@ var LDC_DESIGNS = [
           "STUDY",
           "WIR"
         ],
-        "planPdf": "assets/plans/harrington/harrington-214-concept-set.pdf",
+        "planPdf": "assets/plans/hadley/hadley-214-concept-set.pdf",
         "planImages": [
-          "assets/designs/harrington/harrington-214-floor.webp"
+          "assets/designs/hadley/hadley-214-floor.webp"
         ],
-        "view3d": "assets/designs/harrington/harrington-214-3d.webp"
+        "view3d": "assets/designs/hadley/hadley-214-3d.webp"
       },
       {
         "code": "SERIES 18 ASP2",
-        "slug": "harrington-233",
-        "name": "Harrington 233",
+        "slug": "hadley-233",
+        "name": "Hadley 233",
         "totalM2": 233.3,
         "livingM2": 172.2,
         "garageM2": 39.6,
@@ -3127,16 +3201,16 @@ var LDC_DESIGNS = [
           "THEATRE",
           "WIR"
         ],
-        "planPdf": "assets/plans/harrington/harrington-233-concept-set.pdf",
+        "planPdf": "assets/plans/hadley/hadley-233-concept-set.pdf",
         "planImages": [
-          "assets/designs/harrington/harrington-233-floor.webp"
+          "assets/designs/hadley/hadley-233-floor.webp"
         ],
-        "view3d": "assets/designs/harrington/harrington-233-3d.webp"
+        "view3d": "assets/designs/hadley/hadley-233-3d.webp"
       },
       {
         "code": "SERIES 18 ASP3",
-        "slug": "harrington-234",
-        "name": "Harrington 234",
+        "slug": "hadley-234",
+        "name": "Hadley 234",
         "totalM2": 234.2,
         "livingM2": 170.3,
         "garageM2": 39.3,
@@ -3169,16 +3243,16 @@ var LDC_DESIGNS = [
           "PORCH",
           "WIR"
         ],
-        "planPdf": "assets/plans/harrington/harrington-234-concept-set.pdf",
+        "planPdf": "assets/plans/hadley/hadley-234-concept-set.pdf",
         "planImages": [
-          "assets/designs/harrington/harrington-234-floor.webp"
+          "assets/designs/hadley/hadley-234-floor.webp"
         ],
-        "view3d": "assets/designs/harrington/harrington-234-3d.webp"
+        "view3d": "assets/designs/hadley/hadley-234-3d.webp"
       },
       {
         "code": "SERIES 18 ASP4",
-        "slug": "harrington-251",
-        "name": "Harrington 251",
+        "slug": "hadley-251",
+        "name": "Hadley 251",
         "totalM2": 250.9,
         "livingM2": 184.0,
         "garageM2": 39.4,
@@ -3213,16 +3287,16 @@ var LDC_DESIGNS = [
           "STUDY",
           "WIR"
         ],
-        "planPdf": "assets/plans/harrington/harrington-251-concept-set.pdf",
+        "planPdf": "assets/plans/hadley/hadley-251-concept-set.pdf",
         "planImages": [
-          "assets/designs/harrington/harrington-251-floor.webp"
+          "assets/designs/hadley/hadley-251-floor.webp"
         ],
-        "view3d": "assets/designs/harrington/harrington-251-3d.webp"
+        "view3d": "assets/designs/hadley/hadley-251-3d.webp"
       },
       {
         "code": "SERIES 18 ASP5",
-        "slug": "harrington-312",
-        "name": "Harrington 312",
+        "slug": "hadley-312",
+        "name": "Hadley 312",
         "totalM2": 311.7,
         "livingM2": 229.4,
         "garageM2": 39.2,
@@ -3260,16 +3334,16 @@ var LDC_DESIGNS = [
           "WIP",
           "WIR"
         ],
-        "planPdf": "assets/plans/harrington/harrington-312-concept-set.pdf",
+        "planPdf": "assets/plans/hadley/hadley-312-concept-set.pdf",
         "planImages": [
-          "assets/designs/harrington/harrington-312-floor.webp"
+          "assets/designs/hadley/hadley-312-floor.webp"
         ],
-        "view3d": "assets/designs/harrington/harrington-312-3d.webp"
+        "view3d": "assets/designs/hadley/hadley-312-3d.webp"
       },
       {
         "code": "SERIES 18 ASP6",
-        "slug": "harrington-359",
-        "name": "Harrington 359",
+        "slug": "hadley-359",
+        "name": "Hadley 359",
         "totalM2": 359.4,
         "livingM2": 267.5,
         "garageM2": 39.3,
@@ -3309,11 +3383,11 @@ var LDC_DESIGNS = [
           "WIP",
           "WIR"
         ],
-        "planPdf": "assets/plans/harrington/harrington-359-concept-set.pdf",
+        "planPdf": "assets/plans/hadley/hadley-359-concept-set.pdf",
         "planImages": [
-          "assets/designs/harrington/harrington-359-floor.webp"
+          "assets/designs/hadley/hadley-359-floor.webp"
         ],
-        "view3d": "assets/designs/harrington/harrington-359-3d.webp"
+        "view3d": "assets/designs/hadley/hadley-359-3d.webp"
       }
     ]
   },

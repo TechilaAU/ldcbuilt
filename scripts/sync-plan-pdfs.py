@@ -136,15 +136,15 @@ PAIRS = [
  ],
  [
   "Residential Homes/Double Storey/SERIES 4 DSA/SERIES 4 DSA1 -  CONCEPT SET.pdf",
-  "assets/plans/brighton/brighton-251-concept-set.pdf"
+  "assets/plans/wentworth/wentworth-251-concept-set.pdf"
  ],
  [
   "Residential Homes/Double Storey/SERIES 4 DSA/SERIES 4 DSA3 -  CONCEPT SET.pdf",
-  "assets/plans/brighton/brighton-256-concept-set.pdf"
+  "assets/plans/wentworth/wentworth-256-concept-set.pdf"
  ],
  [
   "Residential Homes/Double Storey/SERIES 4 DSA/SERIES 4 DSA2 -  CONCEPT SET.pdf",
-  "assets/plans/brighton/brighton-283-concept-set.pdf"
+  "assets/plans/wentworth/wentworth-283-concept-set.pdf"
  ],
  [
   "Residential Homes/Double Storey/SERIES 21 DSC/SERIES 21 DSC1 - CONCEPT SET.pdf",
@@ -152,19 +152,19 @@ PAIRS = [
  ],
  [
   "Residential Homes/Double Storey/SERIES 54 ADJ/SERIES 54 ADJ1 - CONCEPT SET.pdf",
-  "assets/plans/wentworth/wentworth-324-concept-set.pdf"
+  "assets/plans/chatsworth/chatsworth-324-concept-set.pdf"
  ],
  [
   "Residential Homes/Double Storey/SERIES 54 ADJ/SERIES 54 ADJ2 - CONCEPT SET.pdf",
-  "assets/plans/wentworth/wentworth-360-concept-set.pdf"
+  "assets/plans/chatsworth/chatsworth-360-concept-set.pdf"
  ],
  [
   "Residential Homes/Double Storey/SERIES 54 ADJ/SERIES 54 ADJ3 - CONCEPT SET.pdf",
-  "assets/plans/wentworth/wentworth-363-concept-set.pdf"
+  "assets/plans/chatsworth/chatsworth-363-concept-set.pdf"
  ],
  [
   "Residential Homes/Double Storey/SERIES 55 ADK/SERIES 55 ADK1 - CONCEPT SET.pdf",
-  "assets/plans/carlisle/carlisle-390-concept-set.pdf"
+  "assets/plans/highgrove/highgrove-390-concept-set.pdf"
  ],
  [
   "Acreage Homes/SERIES 8 ASF/SERIES 8 ASF1 -  CONCEPT SET.pdf",
@@ -208,27 +208,27 @@ PAIRS = [
  ],
  [
   "Acreage Homes/SERIES 18 ASP/SERIES 18 ASP1 - CONCEPT SET.pdf",
-  "assets/plans/harrington/harrington-214-concept-set.pdf"
+  "assets/plans/hadley/hadley-214-concept-set.pdf"
  ],
  [
   "Acreage Homes/SERIES 18 ASP/SERIES 18 ASP2 - CONCEPT SET.pdf",
-  "assets/plans/harrington/harrington-233-concept-set.pdf"
+  "assets/plans/hadley/hadley-233-concept-set.pdf"
  ],
  [
   "Acreage Homes/SERIES 18 ASP/SERIES 18 ASP3 - CONCEPT SET.pdf",
-  "assets/plans/harrington/harrington-234-concept-set.pdf"
+  "assets/plans/hadley/hadley-234-concept-set.pdf"
  ],
  [
   "Acreage Homes/SERIES 18 ASP/SERIES 18 ASP4 - CONCEPT SET.pdf",
-  "assets/plans/harrington/harrington-251-concept-set.pdf"
+  "assets/plans/hadley/hadley-251-concept-set.pdf"
  ],
  [
   "Acreage Homes/SERIES 18 ASP/SERIES 18 ASP5 - CONCEPT SET.pdf",
-  "assets/plans/harrington/harrington-312-concept-set.pdf"
+  "assets/plans/hadley/hadley-312-concept-set.pdf"
  ],
  [
   "Acreage Homes/SERIES 18 ASP/SERIES 18 ASP6 - CONCEPT SET.pdf",
-  "assets/plans/harrington/harrington-359-concept-set.pdf"
+  "assets/plans/hadley/hadley-359-concept-set.pdf"
  ],
  [
   "Acreage Homes/SERIES 28 ASX/SERIES 28 ASX1 - CONCEPT SET.pdf",

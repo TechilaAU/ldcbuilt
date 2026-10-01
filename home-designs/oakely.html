@@ -285,6 +285,7 @@
   .showcase-inner img.showcase-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .showcase-inner.is-plan { background: var(--white); border: 1px solid var(--soft); }
   .showcase-inner.is-plan img.showcase-photo { object-fit: contain; padding: 24px; }
+  @media (max-width: 900px) { .facades-grid[style] { grid-template-columns: 1fr !important; } }
 </style>
 </head>
 <body>
@@ -340,8 +341,26 @@
 </section>
 
 <section class="showcase">
-  <div class="showcase-inner">
-    <img class="showcase-photo" src="../assets/designs/oakely/facades/rock.webp" alt="Oakely — Single Storey">
+  <div class="showcase-inner facade-slider" data-facade-slider tabindex="0" aria-roledescription="carousel" aria-label="Oakely facades">
+    <figure class="fs-slide is-active" data-name="Traditional Estate">
+      <img src="../assets/designs/oakely/facades/traditional-estate.webp" srcset="../assets/designs/oakely/facades/traditional-estate@800.webp 800w, ../assets/designs/oakely/facades/traditional-estate.webp 1920w" sizes="(max-width: 900px) 100vw, 1440px" alt="Oakely &mdash; Traditional Estate facade">
+    </figure>
+    <figure class="fs-slide" data-name="Contemporary">
+      <img src="../assets/designs/oakely/facades/contemporary.webp" srcset="../assets/designs/oakely/facades/contemporary@800.webp 800w, ../assets/designs/oakely/facades/contemporary.webp 1920w" sizes="(max-width: 900px) 100vw, 1440px" alt="Oakely &mdash; Contemporary facade" loading="lazy">
+    </figure>
+    <figure class="fs-slide" data-name="Heritage">
+      <img src="../assets/designs/oakely/facades/heritage.webp" srcset="../assets/designs/oakely/facades/heritage@800.webp 800w, ../assets/designs/oakely/facades/heritage.webp 1920w" sizes="(max-width: 900px) 100vw, 1440px" alt="Oakely &mdash; Heritage facade" loading="lazy">
+    </figure>
+    <figure class="fs-slide" data-name="Stoneleigh">
+      <img src="../assets/designs/oakely/facades/stoneleigh.webp" srcset="../assets/designs/oakely/facades/stoneleigh@800.webp 800w, ../assets/designs/oakely/facades/stoneleigh.webp 1920w" sizes="(max-width: 900px) 100vw, 1440px" alt="Oakely &mdash; Stoneleigh facade" loading="lazy">
+    </figure>
+    <div class="showcase-label">
+      <div class="showcase-label-sub">Facade 01 / 04</div>
+      <div class="showcase-label-main">Traditional Estate</div>
+    </div>
+    <button class="fs-nav fs-prev" aria-label="Previous facade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button class="fs-nav fs-next" aria-label="Next facade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    <div class="fs-dots"><button class="fs-dot is-active" aria-label="Traditional Estate facade"></button><button class="fs-dot" aria-label="Contemporary facade"></button><button class="fs-dot" aria-label="Heritage facade"></button><button class="fs-dot" aria-label="Stoneleigh facade"></button></div>
   </div>
 </section>
 
@@ -667,15 +686,36 @@
   <div class="section-head facades-head">
     <div>
       <div class="section-kicker"><span class="num">03</span> Facade options</div>
-      <h2 class="section-title">One <span class="italic">look<span class="dot">.</span></span></h2>
+      <h2 class="section-title">Four <span class="italic">looks<span class="dot">.</span></span></h2>
     </div>
   </div>
-  <div class="facades-grid">
-    <div class="facade-card">
-      <img src="../assets/designs/oakely/facades/rock.webp" alt="Oakely — Rock facade" loading="lazy">
+  <div class="facades-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="facade-card" data-facade-index="0" data-hover role="button" tabindex="0" aria-label="View the Traditional Estate facade">
+      <img src="../assets/designs/oakely/facades/traditional-estate@800.webp" alt="Oakely &mdash; Traditional Estate facade" loading="lazy">
       <div class="facade-label">
         <div class="facade-label-sub">Facade 01</div>
-        <div class="facade-label-main">Rock</div>
+        <div class="facade-label-main">Traditional Estate</div>
+      </div>
+    </div>
+    <div class="facade-card" data-facade-index="1" data-hover role="button" tabindex="0" aria-label="View the Contemporary facade">
+      <img src="../assets/designs/oakely/facades/contemporary@800.webp" alt="Oakely &mdash; Contemporary facade" loading="lazy">
+      <div class="facade-label">
+        <div class="facade-label-sub">Facade 02</div>
+        <div class="facade-label-main">Contemporary</div>
+      </div>
+    </div>
+    <div class="facade-card" data-facade-index="2" data-hover role="button" tabindex="0" aria-label="View the Heritage facade">
+      <img src="../assets/designs/oakely/facades/heritage@800.webp" alt="Oakely &mdash; Heritage facade" loading="lazy">
+      <div class="facade-label">
+        <div class="facade-label-sub">Facade 03</div>
+        <div class="facade-label-main">Heritage</div>
+      </div>
+    </div>
+    <div class="facade-card" data-facade-index="3" data-hover role="button" tabindex="0" aria-label="View the Stoneleigh facade">
+      <img src="../assets/designs/oakely/facades/stoneleigh@800.webp" alt="Oakely &mdash; Stoneleigh facade" loading="lazy">
+      <div class="facade-label">
+        <div class="facade-label-sub">Facade 04</div>
+        <div class="facade-label-main">Stoneleigh</div>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wentworth — LDC Built</title>
-<meta name="description" content="Wentworth — Double storey, five bedroom capacity. 3 layouts from 324m² to 363m². LDC Built, Brisbane &amp; Gold Coast.">
+<meta name="description" content="Wentworth — Double storey on a nine metre frontage. 3 layouts from 251m² to 283m². LDC Built, Brisbane &amp; Gold Coast.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -285,6 +285,7 @@
   .showcase-inner img.showcase-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .showcase-inner.is-plan { background: var(--white); border: 1px solid var(--soft); }
   .showcase-inner.is-plan img.showcase-photo { object-fit: contain; padding: 24px; }
+  @media (max-width: 900px) { .facades-grid[style] { grid-template-columns: 1fr !important; } }
 </style>
 </head>
 <body>
@@ -329,32 +330,49 @@
       <span class="divider"></span>
       3 layouts
       <span class="divider"></span>
-      324&ndash;363m&sup2;
+      251&ndash;283m&sup2;
     </div>
-    <div class="pill-tag">From 14.5m lots</div>
+    <div class="pill-tag">From 10.5m lots</div>
   </div>
   <h1 class="page-title design-hero-title">
     The <span class="italic">Wentworth<span class="dot">.</span></span>
   </h1>
-  <p class="design-hero-tagline">Double storey, five bedroom capacity</p>
+  <p class="design-hero-tagline">Double storey on a nine metre frontage</p>
 </section>
 
 <section class="showcase">
-  <div class="showcase-inner is-plan">
-    <img class="showcase-photo" src="../assets/designs/wentworth/wentworth-324-3d.webp" alt="Wentworth — Double Storey">
+  <div class="showcase-inner facade-slider" data-facade-slider tabindex="0" aria-roledescription="carousel" aria-label="Wentworth facades">
+    <figure class="fs-slide is-active" data-name="Traditional Estate">
+      <img src="../assets/designs/wentworth/facades/traditional-estate.webp" srcset="../assets/designs/wentworth/facades/traditional-estate@800.webp 800w, ../assets/designs/wentworth/facades/traditional-estate.webp 1920w" sizes="(max-width: 900px) 100vw, 1440px" alt="Wentworth &mdash; Traditional Estate facade">
+    </figure>
+    <figure class="fs-slide" data-name="Contemporary">
+      <img src="../assets/designs/wentworth/facades/contemporary.webp" srcset="../assets/designs/wentworth/facades/contemporary@800.webp 800w, ../assets/designs/wentworth/facades/contemporary.webp 1920w" sizes="(max-width: 900px) 100vw, 1440px" alt="Wentworth &mdash; Contemporary facade" loading="lazy">
+    </figure>
+    <figure class="fs-slide" data-name="Cottage">
+      <img src="../assets/designs/wentworth/facades/cottage.webp" srcset="../assets/designs/wentworth/facades/cottage@800.webp 800w, ../assets/designs/wentworth/facades/cottage.webp 1920w" sizes="(max-width: 900px) 100vw, 1440px" alt="Wentworth &mdash; Cottage facade" loading="lazy">
+    </figure>
+    <figure class="fs-slide" data-name="Manor">
+      <img src="../assets/designs/wentworth/facades/manor.webp" srcset="../assets/designs/wentworth/facades/manor@800.webp 800w, ../assets/designs/wentworth/facades/manor.webp 1920w" sizes="(max-width: 900px) 100vw, 1440px" alt="Wentworth &mdash; Manor facade" loading="lazy">
+    </figure>
+    <div class="showcase-label">
+      <div class="showcase-label-sub">Facade 01 / 04</div>
+      <div class="showcase-label-main">Traditional Estate</div>
+    </div>
+    <button class="fs-nav fs-prev" aria-label="Previous facade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button class="fs-nav fs-next" aria-label="Next facade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    <div class="fs-dots"><button class="fs-dot is-active" aria-label="Traditional Estate facade"></button><button class="fs-dot" aria-label="Contemporary facade"></button><button class="fs-dot" aria-label="Cottage facade"></button><button class="fs-dot" aria-label="Manor facade"></button></div>
   </div>
-    <p class="plan-note">Concept massing view &mdash; facade renders for this series are in production.</p>
 </section>
 
 <section class="specs-strip">
   <div class="specs-grid">
     <div class="spec-item">
       <div class="spec-item-label">Bedrooms</div>
-      <div class="spec-item-value">4&ndash;5</div>
+      <div class="spec-item-value">3&ndash;4</div>
     </div>
     <div class="spec-item">
       <div class="spec-item-label">Bathrooms</div>
-      <div class="spec-item-value">2&ndash;3</div>
+      <div class="spec-item-value">2</div>
     </div>
     <div class="spec-item">
       <div class="spec-item-label">Garage</div>
@@ -362,11 +380,11 @@
     </div>
     <div class="spec-item">
       <div class="spec-item-label">Total area</div>
-      <div class="spec-item-value">324&ndash;363<small>m&sup2;</small></div>
+      <div class="spec-item-value">251&ndash;283<small>m&sup2;</small></div>
     </div>
     <div class="spec-item">
       <div class="spec-item-label">Lot width from</div>
-      <div class="spec-item-value">14.5<small>m</small></div>
+      <div class="spec-item-value">10.5<small>m</small></div>
     </div>
     <div class="spec-item">
       <div class="spec-item-label">Storeys</div>
@@ -409,31 +427,121 @@
 <section class="variants">
   <div class="section-kicker"><span class="num">02</span> Layouts in this series</div>
   <div class="variant-tabs">
-    <button class="variant-tab active" data-variant="0">324m&sup2; · 4 bed</button>
-    <button class="variant-tab" data-variant="1">360m&sup2; · 5 bed</button>
-    <button class="variant-tab" data-variant="2">363m&sup2; · 4 bed</button>
+    <button class="variant-tab active" data-variant="0">251m&sup2; · 4 bed</button>
+    <button class="variant-tab" data-variant="1">256m&sup2; · 3 bed</button>
+    <button class="variant-tab" data-variant="2">283m&sup2; · 4 bed</button>
   </div>
   <div class="variant-panel active" data-panel="0">
     <div class="variant-layout">
       <div>
       <div class="plan-figure">
-        <div class="plan-figure-cap">Lower floor · Wentworth 324</div>
-        <img src="../assets/designs/wentworth/wentworth-324-lower.webp" alt="Wentworth 324 lower floor" loading="lazy">
+        <div class="plan-figure-cap">Lower floor · Wentworth 251</div>
+        <img src="../assets/designs/wentworth/wentworth-251-lower.webp" alt="Wentworth 251 lower floor" loading="lazy">
       </div>
       <div class="plan-figure">
-        <div class="plan-figure-cap">Upper floor · Wentworth 324</div>
-        <img src="../assets/designs/wentworth/wentworth-324-upper.webp" alt="Wentworth 324 upper floor" loading="lazy">
+        <div class="plan-figure-cap">Upper floor · Wentworth 251</div>
+        <img src="../assets/designs/wentworth/wentworth-251-upper.webp" alt="Wentworth 251 upper floor" loading="lazy">
       </div>
       </div>
       <div>
         <div class="variant-specs">
         <div class="variant-spec">
           <div class="variant-spec-label">Total area</div>
-          <div class="variant-spec-value">324<small>m&sup2;</small></div>
+          <div class="variant-spec-value">251<small>m&sup2;</small></div>
         </div>
         <div class="variant-spec">
           <div class="variant-spec-label">Living area</div>
-          <div class="variant-spec-value">246<small>m&sup2;</small></div>
+          <div class="variant-spec-value">189<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bedrooms</div>
+          <div class="variant-spec-value">4</div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bathrooms</div>
+          <div class="variant-spec-value">2 <small>+2 powder</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Garage</div>
+          <div class="variant-spec-value">2<small> car · 43m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Footprint</div>
+          <div class="variant-spec-value">9.0<small>m &times; 21.41m</small></div>
+        </div>
+        </div>
+        <div class="variant-rooms"><span class="room-chip">Alfresco</span><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Bed 4</span><span class="room-chip">Courtyard</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Family</span><span class="room-chip">Garage</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Master</span><span class="room-chip">Pdr</span><span class="room-chip">Porch</span><span class="room-chip">Study</span><span class="room-chip">Void</span><span class="room-chip">Wip</span><span class="room-chip">Wir</span></div>
+        <a href="../assets/plans/wentworth/wentworth-251-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
+        <p class="variant-note">Plan code SERIES 4 DSA1. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
+      </div>
+    </div>
+  </div>
+  <div class="variant-panel" data-panel="1">
+    <div class="variant-layout">
+      <div>
+      <div class="plan-figure">
+        <div class="plan-figure-cap">Lower floor · Wentworth 256</div>
+        <img src="../assets/designs/wentworth/wentworth-256-lower.webp" alt="Wentworth 256 lower floor" loading="lazy">
+      </div>
+      <div class="plan-figure">
+        <div class="plan-figure-cap">Upper floor · Wentworth 256</div>
+        <img src="../assets/designs/wentworth/wentworth-256-upper.webp" alt="Wentworth 256 upper floor" loading="lazy">
+      </div>
+      </div>
+      <div>
+        <div class="variant-specs">
+        <div class="variant-spec">
+          <div class="variant-spec-label">Total area</div>
+          <div class="variant-spec-value">256<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Living area</div>
+          <div class="variant-spec-value">194<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bedrooms</div>
+          <div class="variant-spec-value">3</div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Bathrooms</div>
+          <div class="variant-spec-value">2 <small>+1 powder</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Garage</div>
+          <div class="variant-spec-value">2<small> car · 43m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Footprint</div>
+          <div class="variant-spec-value">9.0<small>m &times; 21.41m</small></div>
+        </div>
+        </div>
+        <div class="variant-rooms"><span class="room-chip">Alfresco</span><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Courtyard</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Family</span><span class="room-chip">Garage</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Master</span><span class="room-chip">Media</span><span class="room-chip">Pdr</span><span class="room-chip">Porch</span><span class="room-chip">Void</span><span class="room-chip">Wip</span><span class="room-chip">Wir</span></div>
+        <a href="../assets/plans/wentworth/wentworth-256-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
+        <p class="variant-note">Plan code SERIES 4 DSA3. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
+      </div>
+    </div>
+  </div>
+  <div class="variant-panel" data-panel="2">
+    <div class="variant-layout">
+      <div>
+      <div class="plan-figure">
+        <div class="plan-figure-cap">Lower floor · Wentworth 283</div>
+        <img src="../assets/designs/wentworth/wentworth-283-lower.webp" alt="Wentworth 283 lower floor" loading="lazy">
+      </div>
+      <div class="plan-figure">
+        <div class="plan-figure-cap">Upper floor · Wentworth 283</div>
+        <img src="../assets/designs/wentworth/wentworth-283-upper.webp" alt="Wentworth 283 upper floor" loading="lazy">
+      </div>
+      </div>
+      <div>
+        <div class="variant-specs">
+        <div class="variant-spec">
+          <div class="variant-spec-label">Total area</div>
+          <div class="variant-spec-value">283<small>m&sup2;</small></div>
+        </div>
+        <div class="variant-spec">
+          <div class="variant-spec-label">Living area</div>
+          <div class="variant-spec-value">197<small>m&sup2;</small></div>
         </div>
         <div class="variant-spec">
           <div class="variant-spec-label">Bedrooms</div>
@@ -445,115 +553,63 @@
         </div>
         <div class="variant-spec">
           <div class="variant-spec-label">Garage</div>
-          <div class="variant-spec-value">2<small> car · 39m&sup2;</small></div>
+          <div class="variant-spec-value">2<small> car · 43m&sup2;</small></div>
         </div>
         <div class="variant-spec">
           <div class="variant-spec-label">Footprint</div>
-          <div class="variant-spec-value">12.86<small>m &times; 21.32m</small></div>
+          <div class="variant-spec-value">9.0<small>m &times; 18.82m</small></div>
         </div>
         </div>
-        <div class="variant-rooms"><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Bed 4</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Garage</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Master</span><span class="room-chip">Media</span><span class="room-chip">Patio</span><span class="room-chip">Pdr</span><span class="room-chip">Porch</span><span class="room-chip">Void</span><span class="room-chip">Wip</span><span class="room-chip">Wir</span></div>
-        <a href="../assets/plans/wentworth/wentworth-324-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
-        <p class="variant-note">Plan code SERIES 54 ADJ1. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
-      </div>
-    </div>
-  </div>
-  <div class="variant-panel" data-panel="1">
-    <div class="variant-layout">
-      <div>
-      <div class="plan-figure">
-        <div class="plan-figure-cap">Lower floor · Wentworth 360</div>
-        <img src="../assets/designs/wentworth/wentworth-360-lower.webp" alt="Wentworth 360 lower floor" loading="lazy">
-      </div>
-      <div class="plan-figure">
-        <div class="plan-figure-cap">Upper floor · Wentworth 360</div>
-        <img src="../assets/designs/wentworth/wentworth-360-upper.webp" alt="Wentworth 360 upper floor" loading="lazy">
-      </div>
-      </div>
-      <div>
-        <div class="variant-specs">
-        <div class="variant-spec">
-          <div class="variant-spec-label">Total area</div>
-          <div class="variant-spec-value">360<small>m&sup2;</small></div>
-        </div>
-        <div class="variant-spec">
-          <div class="variant-spec-label">Living area</div>
-          <div class="variant-spec-value">282<small>m&sup2;</small></div>
-        </div>
-        <div class="variant-spec">
-          <div class="variant-spec-label">Bedrooms</div>
-          <div class="variant-spec-value">5</div>
-        </div>
-        <div class="variant-spec">
-          <div class="variant-spec-label">Bathrooms</div>
-          <div class="variant-spec-value">3 <small>+1 powder</small></div>
-        </div>
-        <div class="variant-spec">
-          <div class="variant-spec-label">Garage</div>
-          <div class="variant-spec-value">2<small> car · 39m&sup2;</small></div>
-        </div>
-        <div class="variant-spec">
-          <div class="variant-spec-label">Footprint</div>
-          <div class="variant-spec-value">14.06<small>m &times; 23.04m</small></div>
-        </div>
-        </div>
-        <div class="variant-rooms"><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Bed 4</span><span class="room-chip">Bed 5</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Garage</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Lounge</span><span class="room-chip">Master</span><span class="room-chip">Patio</span><span class="room-chip">Porch</span><span class="room-chip">Sitting</span><span class="room-chip">Void</span><span class="room-chip">Wip</span><span class="room-chip">Wir</span></div>
-        <a href="../assets/plans/wentworth/wentworth-360-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
-        <p class="variant-note">Plan code SERIES 54 ADJ2. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
-      </div>
-    </div>
-  </div>
-  <div class="variant-panel" data-panel="2">
-    <div class="variant-layout">
-      <div>
-      <div class="plan-figure">
-        <div class="plan-figure-cap">Lower floor · Wentworth 363</div>
-        <img src="../assets/designs/wentworth/wentworth-363-lower.webp" alt="Wentworth 363 lower floor" loading="lazy">
-      </div>
-      <div class="plan-figure">
-        <div class="plan-figure-cap">Upper floor · Wentworth 363</div>
-        <img src="../assets/designs/wentworth/wentworth-363-upper.webp" alt="Wentworth 363 upper floor" loading="lazy">
-      </div>
-      </div>
-      <div>
-        <div class="variant-specs">
-        <div class="variant-spec">
-          <div class="variant-spec-label">Total area</div>
-          <div class="variant-spec-value">363<small>m&sup2;</small></div>
-        </div>
-        <div class="variant-spec">
-          <div class="variant-spec-label">Living area</div>
-          <div class="variant-spec-value">288<small>m&sup2;</small></div>
-        </div>
-        <div class="variant-spec">
-          <div class="variant-spec-label">Bedrooms</div>
-          <div class="variant-spec-value">4</div>
-        </div>
-        <div class="variant-spec">
-          <div class="variant-spec-label">Bathrooms</div>
-          <div class="variant-spec-value">3 <small>+1 powder</small></div>
-        </div>
-        <div class="variant-spec">
-          <div class="variant-spec-label">Garage</div>
-          <div class="variant-spec-value">2<small> car · 39m&sup2;</small></div>
-        </div>
-        <div class="variant-spec">
-          <div class="variant-spec-label">Footprint</div>
-          <div class="variant-spec-value">14.06<small>m &times; 23.04m</small></div>
-        </div>
-        </div>
-        <div class="variant-rooms"><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Bed 4</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Family</span><span class="room-chip">Garage</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Lounge</span><span class="room-chip">Master</span><span class="room-chip">Patio</span><span class="room-chip">Porch</span><span class="room-chip">Void</span><span class="room-chip">Wip</span><span class="room-chip">Wir</span></div>
-        <a href="../assets/plans/wentworth/wentworth-363-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
-        <p class="variant-note">Plan code SERIES 54 ADJ3. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
+        <div class="variant-rooms"><span class="room-chip">Alfresco</span><span class="room-chip">Balcony</span><span class="room-chip">Bath</span><span class="room-chip">Bed 2</span><span class="room-chip">Bed 3</span><span class="room-chip">Bed 4</span><span class="room-chip">Courtyard</span><span class="room-chip">Dining</span><span class="room-chip">Ens</span><span class="room-chip">Entry</span><span class="room-chip">Garage</span><span class="room-chip">Kitchen</span><span class="room-chip">Ldry</span><span class="room-chip">Living</span><span class="room-chip">Master</span><span class="room-chip">Patio</span><span class="room-chip">Pdr</span><span class="room-chip">Porch</span><span class="room-chip">Rumpus</span><span class="room-chip">Void</span><span class="room-chip">Wir</span></div>
+        <a href="../assets/plans/wentworth/wentworth-283-concept-set.pdf" class="btn-primary" download>Download concept set (PDF)</a>
+        <p class="variant-note">Plan code SERIES 4 DSA2. Dimensions are taken from the concept drawings and are indicative &mdash; final areas are confirmed at contract.</p>
       </div>
     </div>
   </div>
 </section>
 
+<section class="facades">
+  <div class="section-head facades-head">
+    <div>
+      <div class="section-kicker"><span class="num">03</span> Facade options</div>
+      <h2 class="section-title">Four <span class="italic">looks<span class="dot">.</span></span></h2>
+    </div>
+  </div>
+  <div class="facades-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="facade-card" data-facade-index="0" data-hover role="button" tabindex="0" aria-label="View the Traditional Estate facade">
+      <img src="../assets/designs/wentworth/facades/traditional-estate@800.webp" alt="Wentworth &mdash; Traditional Estate facade" loading="lazy">
+      <div class="facade-label">
+        <div class="facade-label-sub">Facade 01</div>
+        <div class="facade-label-main">Traditional Estate</div>
+      </div>
+    </div>
+    <div class="facade-card" data-facade-index="1" data-hover role="button" tabindex="0" aria-label="View the Contemporary facade">
+      <img src="../assets/designs/wentworth/facades/contemporary@800.webp" alt="Wentworth &mdash; Contemporary facade" loading="lazy">
+      <div class="facade-label">
+        <div class="facade-label-sub">Facade 02</div>
+        <div class="facade-label-main">Contemporary</div>
+      </div>
+    </div>
+    <div class="facade-card" data-facade-index="2" data-hover role="button" tabindex="0" aria-label="View the Cottage facade">
+      <img src="../assets/designs/wentworth/facades/cottage@800.webp" alt="Wentworth &mdash; Cottage facade" loading="lazy">
+      <div class="facade-label">
+        <div class="facade-label-sub">Facade 03</div>
+        <div class="facade-label-main">Cottage</div>
+      </div>
+    </div>
+    <div class="facade-card" data-facade-index="3" data-hover role="button" tabindex="0" aria-label="View the Manor facade">
+      <img src="../assets/designs/wentworth/facades/manor@800.webp" alt="Wentworth &mdash; Manor facade" loading="lazy">
+      <div class="facade-label">
+        <div class="facade-label-sub">Facade 04</div>
+        <div class="facade-label-main">Manor</div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="enquire" id="enquire">
   <div class="enquire-inner">
     <div class="enquire-content">
-      <div class="section-kicker"><span class="num">03</span> Enquire</div>
+      <div class="section-kicker"><span class="num">04</span> Enquire</div>
       <h2 class="enquire-title">Enquire on the <span class="italic">Wentworth<span class="dot">.</span></span></h2>
       <p class="enquire-intro">Tell us a little about your block and your brief. We'll come back within one business day with a personalised quote and any relevant inclusions for your region.</p>
     </div>
@@ -610,7 +666,7 @@
 <section class="related">
   <div class="section-head">
     <div>
-      <div class="section-kicker"><span class="num">04</span> Also consider</div>
+      <div class="section-kicker"><span class="num">05</span> Also consider</div>
       <h2 class="section-title">Related <span class="italic">designs<span class="dot">.</span></span></h2>
     </div>
     <a href="index.html" class="btn-ghost btn-sm btn-arrow">
